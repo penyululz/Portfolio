@@ -3,6 +3,8 @@ export const siteConfig = {
   shortName: "Faris Danial",
   description:
     "Software engineer building scalable SaaS products with a foundation in IT infrastructure, DevOps, and full-stack development.",
+  resumeHref: "/resume.pdf",
+  resumeDownloadName: "Mohamad-Faris-Danial-Resume.pdf",
   themeColor: {
     light: "#ffffff",
     dark: "#050505",

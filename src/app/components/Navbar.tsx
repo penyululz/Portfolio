@@ -1,5 +1,6 @@
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Download, Menu, Moon, Sun, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { siteConfig } from "../site";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -55,6 +56,15 @@ export function Navbar({
             ))}
           </nav>
 
+          <a
+            href={siteConfig.resumeHref}
+            download={siteConfig.resumeDownloadName}
+            className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-black shadow-[0_14px_32px_-18px_rgba(16,185,129,0.85)] transition-transform hover:scale-[1.02]"
+          >
+            <Download className="h-4 w-4" />
+            Resume
+          </a>
+
           <button
             type="button"
             onClick={onToggleTheme}
@@ -90,6 +100,16 @@ export function Navbar({
       {isMobileMenuOpen && (
         <div className="px-4 pt-3 lg:hidden">
           <div className="mx-auto max-w-7xl rounded-[1.75rem] border border-zinc-200 bg-white/98 p-3 shadow-[0_16px_44px_-28px_rgba(24,24,27,0.28)] dark:border-zinc-800 dark:bg-zinc-950/96 dark:shadow-none">
+            <a
+              href={siteConfig.resumeHref}
+              download={siteConfig.resumeDownloadName}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mb-2 flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-black"
+            >
+              <Download className="h-4 w-4" />
+              Download Resume
+            </a>
+
             <nav className="grid gap-2 sm:grid-cols-2">
               {navItems.map((item) => (
                 <a

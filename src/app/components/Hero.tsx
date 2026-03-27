@@ -1,5 +1,6 @@
 import { motion, type Variants } from "motion/react";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, Download } from "lucide-react";
+import { siteConfig } from "../site";
 
 const heroImageSrc = "/hero-image.jpg";
 const backgroundVideoByTheme = {
@@ -114,6 +115,15 @@ export function Hero({ theme }: { theme: "light" | "dark" }) {
                   <div className="absolute inset-0 translate-y-[100%] bg-emerald-400 transition-transform duration-200 ease-out group-hover:translate-y-0" />
                   <span className="relative z-10">Explore Work</span>
                   <ArrowDownRight className="relative z-10 h-5 w-5 transition-transform duration-200 group-hover:rotate-[-45deg]" />
+                </a>
+
+                <a
+                  href={siteConfig.resumeHref}
+                  download={siteConfig.resumeDownloadName}
+                  className="flex items-center gap-3 rounded-full border border-zinc-300 bg-white/86 px-6 py-3.5 text-sm font-semibold text-zinc-900 shadow-[0_16px_34px_-24px_rgba(24,24,27,0.45)] backdrop-blur-md transition-transform duration-200 hover:scale-[1.02] dark:border-zinc-700 dark:bg-zinc-950/70 dark:text-white sm:px-8 sm:py-4 sm:text-base"
+                >
+                  <Download className="h-5 w-5 text-emerald-500 dark:text-emerald-400" />
+                  <span>Download Resume</span>
                 </a>
               </motion.div>
             </motion.div>
