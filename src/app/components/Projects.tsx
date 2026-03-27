@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, type PanInfo } from "motion/react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, FileEdit, Mail } from "lucide-react";
 import { useState } from "react";
 
@@ -75,6 +75,9 @@ const slideVariants = {
     x: direction > 0 ? -48 : 48,
   }),
 };
+
+const swipeOffsetThreshold = 90;
+const swipeVelocityThreshold = 520;
 
 function ProjectSlide({ project }: { project: (typeof projects)[number] }) {
   return (
@@ -173,10 +176,21 @@ export function Projects() {
     setActiveIndex((current) => (current + 1) % projects.length);
   };
 
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (info.offset.x <= -swipeOffsetThreshold || info.velocity.x <= -swipeVelocityThreshold) {
+      goNext();
+      return;
+    }
+
+    if (info.offset.x >= swipeOffsetThreshold || info.velocity.x >= swipeVelocityThreshold) {
+      goPrev();
+    }
+  };
+
   const activeProject = projects[activeIndex];
 
   return (
-    <section id="project-fmp" className="section-render bg-background py-20 dark:bg-[#050505] sm:py-24 md:py-28 lg:py-32">
+    <section id="project-fmp" className="section-render bg-transparent py-20 sm:py-24 md:py-28 lg:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-8 lg:gap-10 xl:grid-cols-[minmax(0,21rem)_1fr] xl:items-center">
           <motion.div
@@ -251,7 +265,12 @@ export function Projects() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.38, ease: "easeOut" }}
-                  className="transform-gpu"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.16}
+                  onDragEnd={handleDragEnd}
+                  whileDrag={{ scale: 0.992 }}
+                  className="transform-gpu touch-pan-y cursor-grab active:cursor-grabbing"
                 >
                   <ProjectSlide project={activeProject} />
                 </motion.div>

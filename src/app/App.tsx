@@ -10,6 +10,11 @@ import { Navbar } from "./components/Navbar";
 import { AccessibilityTools } from "./components/AccessibilityTools";
 import { siteConfig } from "./site";
 
+const pageBackgroundByTheme = {
+  light: "/background-light.jpg",
+  dark: "/background-dark.jpg",
+} as const;
+
 export default function App() {
   const [theme, setTheme] = useState<"light" | "dark">("dark");
 
@@ -39,12 +44,19 @@ export default function App() {
 
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 opacity-72 dark:opacity-60"
+          className="pointer-events-none absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-95 transition-opacity duration-300 dark:opacity-90"
           style={{
-            backgroundImage:
+            backgroundImage: `url("${pageBackgroundByTheme[theme]}")`,
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background:
               theme === "dark"
-                ? "linear-gradient(180deg, rgba(5,5,5,0.58), rgba(5,5,5,0.68)), radial-gradient(circle at 18% 16%, rgba(16,185,129,0.12), transparent 26%), radial-gradient(circle at 82% 18%, rgba(255,255,255,0.05), transparent 20%)"
-                : "linear-gradient(180deg, rgba(255,255,255,0.54), rgba(255,255,255,0.62)), radial-gradient(circle at 18% 16%, rgba(5,150,105,0.07), transparent 24%), radial-gradient(circle at 82% 18%, rgba(24,24,27,0.03), transparent 18%)",
+                ? "linear-gradient(180deg, rgba(3,3,3,0.42), rgba(3,3,3,0.68)), radial-gradient(circle at 16% 12%, rgba(16,185,129,0.1), transparent 24%), radial-gradient(circle at 84% 18%, rgba(255,255,255,0.06), transparent 18%)"
+                : "linear-gradient(180deg, rgba(255,255,255,0.58), rgba(255,255,255,0.76)), radial-gradient(circle at 14% 14%, rgba(16,185,129,0.08), transparent 22%), radial-gradient(circle at 82% 20%, rgba(24,24,27,0.04), transparent 16%)",
           }}
         />
 

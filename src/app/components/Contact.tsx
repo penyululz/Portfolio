@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowUpRight, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
 const contactLinks = [
   {
@@ -8,6 +8,7 @@ const contactLinks = [
     icon: Mail,
     eyebrow: "Direct Contact",
     description: "Reach out for collaborations, freelance projects, or product discussions.",
+    external: false,
   },
   {
     label: "LinkedIn",
@@ -15,12 +16,21 @@ const contactLinks = [
     icon: Linkedin,
     eyebrow: "Professional Profile",
     description: "Connect with me professionally and follow my journey in software engineering.",
+    external: true,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/penyululz",
+    icon: Github,
+    eyebrow: "Code & Repositories",
+    description: "Browse my projects, experiments, and open-source work on GitHub.",
+    external: true,
   },
 ];
 
 export function Contact() {
   return (
-    <section id="contact" className="section-render relative bg-background py-16 dark:bg-[#050505] sm:py-20 md:py-24">
+    <section id="contact" className="section-render relative bg-transparent py-16 sm:py-20 md:py-24">
       <div className="container mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,8 +64,8 @@ export function Contact() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  target={item.label === "LinkedIn" ? "_blank" : undefined}
-                  rel={item.label === "LinkedIn" ? "noreferrer noopener" : undefined}
+                  target={item.external ? "_blank" : undefined}
+                  rel={item.external ? "noreferrer noopener" : undefined}
                   initial={{ opacity: 0, x: 24 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-80px" }}

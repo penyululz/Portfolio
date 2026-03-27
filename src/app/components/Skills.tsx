@@ -33,7 +33,7 @@ export function Skills() {
   ];
 
   return (
-    <section id="skills" className="section-render relative overflow-hidden bg-background py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
+    <section id="skills" className="section-render relative overflow-hidden bg-transparent py-20 sm:py-24 lg:py-32">
       
       {/* Infinite Scrolling Ticker */}
       <div className="mb-14 flex flex-col gap-3 rotate-[-2deg] sm:mb-18 sm:gap-4 sm:scale-105 lg:mb-24">

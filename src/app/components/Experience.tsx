@@ -62,7 +62,7 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="section-render relative bg-background py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
+    <section id="experience" className="section-render relative bg-transparent py-20 sm:py-24 lg:py-32">
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="section-heading-block">
           <div className="section-heading-stack">
