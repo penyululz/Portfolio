@@ -244,6 +244,47 @@
 }
 
 @layer utilities {
+  .section-heading-block {
+    margin-bottom: clamp(2.5rem, 4vw, 4.5rem);
+  }
+
+  .section-heading-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .section-heading-copy {
+    max-width: 42rem;
+  }
+
+  .display-title {
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7),
+      0 14px 28px rgba(24, 24, 27, 0.08);
+  }
+
+  .dark .display-title {
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06),
+      0 14px 28px rgba(0, 0, 0, 0.34);
+  }
+
+  .display-title-muted {
+    color: rgb(82 82 91);
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.72),
+      0 14px 28px rgba(24, 24, 27, 0.08);
+  }
+
+  .dark .display-title-muted {
+    color: rgb(161 161 170);
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05),
+      0 14px 28px rgba(0, 0, 0, 0.36);
+  }
+
   .animate-marquee-left {
     animation: marquee-left 35s linear infinite;
   }

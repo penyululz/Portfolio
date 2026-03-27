@@ -173,7 +173,25 @@ Build production output:
 npm run build
 ```
 
-Output is generated in `dist/`. You can deploy `dist/` to static hosts such as Vercel, Netlify, Cloudflare Pages, or GitHub Pages.
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+Output is generated in `dist/`.
+
+Deployment notes:
+
+- Vercel: import the project and use the default Vite settings. `vercel.json` is included with an SPA rewrite.
+- Netlify: set the build command to `npm run build` and publish directory to `dist`. The `public/_redirects` file is included for SPA fallback.
+- Cloudflare Pages: use `npm run build` and publish `dist/`.
+
+SEO and metadata notes:
+
+- Favicons, app icons, and a social preview image now live in `public/`.
+- Page metadata, Open Graph tags, Twitter cards, structured data, and the web manifest are defined in `index.html`.
+- Canonical and social image URLs are upgraded at runtime to the deployed origin so local builds and preview deployments do not ship a wrong domain by default.
 
 ## Troubleshooting
 

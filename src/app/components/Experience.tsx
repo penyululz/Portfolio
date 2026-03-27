@@ -62,12 +62,14 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="section-render relative bg-white py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
+    <section id="experience" className="section-render relative bg-background py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
       <div className="container mx-auto px-6 max-w-5xl">
-        <div className="mb-12 sm:mb-16 lg:mb-24">
-          <h2 className="mb-4 text-3xl font-black leading-[0.92] tracking-[-0.05em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
+        <div className="section-heading-block">
+          <div className="section-heading-stack">
+            <h2 className="display-title text-3xl font-black leading-[0.98] tracking-[-0.03em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
             THE <span className="text-emerald-500">TIMELINE</span>
-          </h2>
+            </h2>
+          </div>
         </div>
 
         <div className="relative" ref={timelineRef}>

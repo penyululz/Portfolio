@@ -37,7 +37,7 @@ export function Navbar({
         >
           <img
             src={theme === "dark" ? "/brand/logo-dark-compact.svg" : "/brand/logo-light-compact.svg"}
-            alt="FMP logo"
+            alt="Faris Danial logo"
             className="h-8 w-auto sm:h-9"
           />
         </a>

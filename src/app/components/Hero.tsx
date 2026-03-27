@@ -1,7 +1,13 @@
 import { motion, type Variants } from "motion/react";
 import { ArrowDownRight } from "lucide-react";
 
-export function Hero() {
+const heroImageSrc = "/hero-image.jpg";
+const backgroundVideoByTheme = {
+  light: "/background-light.mp4",
+  dark: "/background-dark.mp4",
+} as const;
+
+export function Hero({ theme }: { theme: "light" | "dark" }) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -24,6 +30,31 @@ export function Hero() {
       id="home"
       className="relative flex min-h-[100svh] w-full items-start justify-center overflow-x-hidden pt-28 pb-12 sm:items-center sm:pt-32 sm:pb-16 lg:h-screen lg:overflow-hidden lg:py-0"
     >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <video
+          key={theme}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="h-full w-full object-cover"
+        >
+          <source src={backgroundVideoByTheme[theme]} type="video/mp4" />
+        </video>
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            theme === "dark"
+              ? "linear-gradient(180deg, rgba(5,5,5,0.56), rgba(5,5,5,0.7)), radial-gradient(circle at 18% 16%, rgba(16,185,129,0.12), transparent 26%), radial-gradient(circle at 82% 18%, rgba(255,255,255,0.05), transparent 20%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.58)), radial-gradient(circle at 18% 16%, rgba(5,150,105,0.08), transparent 24%), radial-gradient(circle at 82% 18%, rgba(24,24,27,0.03), transparent 18%)",
+        }}
+      />
+
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -51,7 +82,7 @@ export function Hero() {
               <div className="overflow-hidden">
                 <motion.h1 
                   variants={itemVariants}
-                  className="inline-block text-[16vw] font-black leading-[0.8] tracking-[-0.07em] text-zinc-900 [text-wrap:balance] dark:text-zinc-100 sm:text-[12vw] lg:text-[7vw]"
+                  className="display-title inline-block text-[16vw] font-black leading-[0.86] tracking-[-0.045em] text-zinc-900 [text-wrap:balance] dark:text-zinc-100 sm:text-[12vw] lg:text-[7vw]"
                 >
                   FARIS
                 </motion.h1>
@@ -59,7 +90,7 @@ export function Hero() {
               <div className="overflow-hidden">
                 <motion.h1 
                   variants={itemVariants}
-                  className="inline-block text-[16vw] font-black leading-[0.8] tracking-[-0.07em] text-zinc-500 [text-wrap:balance] dark:text-zinc-400 sm:text-[12vw] lg:text-[7vw]"
+                  className="display-title inline-block text-[16vw] font-black leading-[0.86] tracking-[-0.045em] text-emerald-500 [text-wrap:balance] dark:text-emerald-400 sm:text-[12vw] lg:text-[7vw]"
                 >
                   DANIAL
                 </motion.h1>
@@ -96,8 +127,8 @@ export function Hero() {
               className="aspect-[3/4] w-full max-w-[12rem] overflow-hidden rounded-full border border-zinc-200 grayscale sm:max-w-[15rem] dark:border-zinc-800"
             >
               <img
-                src="https://images.unsplash.com/photo-1770392988936-dc3d8581e0c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGFzaWFuJTIweW91bmclMjBtYW58ZW58MXx8fHwxNzc0NTk2MTcyfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Portrait"
+                src={heroImageSrc}
+                alt="Portrait of Mohamad Faris Danial"
                 loading="eager"
                 decoding="async"
                 className="h-full w-full object-cover scale-110"
@@ -115,8 +146,8 @@ export function Hero() {
             >
               <div className="absolute inset-0 z-10 bg-emerald-500/10 mix-blend-overlay" />
               <img
-                src="https://images.unsplash.com/photo-1770392988936-dc3d8581e0c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMGFzaWFuJTIweW91bmclMjBtYW58ZW58MXx8fHwxNzc0NTk2MTcyfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Portrait"
+                src={heroImageSrc}
+                alt="Portrait of Mohamad Faris Danial"
                 loading="eager"
                 decoding="async"
                 className="w-full h-full object-cover scale-110"

@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 
 export function About() {
   return (
-    <section id="about" className="section-render relative z-10 bg-white py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
+    <section id="about" className="section-render relative z-10 bg-background py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
       <div className="container mx-auto max-w-7xl px-6">
         <div className="grid items-start gap-10 md:gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           
@@ -11,10 +11,10 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-5"
+            className="section-heading-stack lg:col-span-5"
           >
-            <h2 className="mb-5 text-[18vw] font-black leading-[0.82] tracking-[-0.06em] text-zinc-300 dark:text-zinc-800 sm:text-[13vw] lg:text-[6vw]">
-              THE<br/>STORY
+            <h2 className="display-title text-[18vw] font-black leading-[0.88] tracking-[-0.04em] text-zinc-950 dark:text-white sm:text-[13vw] lg:text-[6vw]">
+              THE<br/><span className="text-emerald-500 dark:text-emerald-400">STORY</span>
             </h2>
             <div className="h-2 w-16 rounded-full bg-emerald-500 sm:w-20" />
           </motion.div>

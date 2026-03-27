@@ -1,6 +1,11 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowRight, ArrowUpRight, FileEdit, Mail, MonitorPlay } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, FileEdit, Mail } from "lucide-react";
 import { useState } from "react";
+
+type ProjectImage = {
+  src: string;
+  alt: string;
+};
 
 const projects = [
   {
@@ -9,8 +14,10 @@ const projects = [
     description:
       "A multi-tenant application streamlining facility operations. Coordinates maintenance, vendors, and complex bookings workflows.",
     tags: ["React", "Supabase", "PostgreSQL", "Tailwind"],
-    image:
-      "https://images.unsplash.com/photo-1744735913931-dab4bbde360a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzYWFzJTIwZGFzaGJvYXJkJTIwdWl8ZW58MXx8fHwxNzc0NTk2MTcyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+    image: {
+      src: "/FMP.png",
+      alt: "Facility Management Partner dashboard preview",
+    },
     link: "https://fmp-experimental-fp.vercel.app",
   },
   {
@@ -19,7 +26,10 @@ const projects = [
     description:
       "Led development of a web-based coaching system, architecting the platform and coordinating end-to-end team delivery.",
     tags: ["Architecture", "Team Lead", "Delivery"],
-    icon: MonitorPlay,
+    image: {
+      src: "/tiktok.webp",
+      alt: "TikTok System project preview",
+    },
   },
   {
     title: "Go Mail",
@@ -27,7 +37,10 @@ const projects = [
     description:
       "Robust email system built entirely in Go featuring secure authentication with comprehensive SMTP and IMAP capabilities.",
     tags: ["Go", "SMTP/IMAP", "Auth"],
-    icon: Mail,
+    image: {
+      src: "/Gomail.png",
+      alt: "Go Mail project preview",
+    },
   },
   {
     title: "Immich & Stirling PDF",
@@ -35,7 +48,16 @@ const projects = [
     description:
       "Contributed to high-performance systems including a Docker-optimized photo manager and a comprehensive PDF manipulation tool.",
     tags: ["Docker", "Optimization", "System Dev"],
-    icon: FileEdit,
+    images: [
+      {
+        src: "/immich.png",
+        alt: "Immich project preview",
+      },
+      {
+        src: "/stirlingpdf.jpg",
+        alt: "Stirling PDF project preview",
+      },
+    ],
   },
 ];
 
@@ -57,16 +79,31 @@ const slideVariants = {
 function ProjectSlide({ project }: { project: (typeof projects)[number] }) {
   return (
     <article className="group relative h-[26rem] overflow-hidden rounded-[1.75rem] border border-zinc-200 bg-white shadow-[0_18px_44px_rgba(24,24,27,0.08)] sm:h-[30rem] sm:rounded-[2rem] md:h-[34rem] xl:h-[36rem] dark:border-zinc-800 dark:bg-zinc-900/80 dark:shadow-none">
-      {project.image ? (
+      {project.images ? (
+        <>
+          <div className="absolute inset-0 grid grid-cols-2">
+            {project.images.map((image: ProjectImage) => (
+              <div key={image.src} className="relative overflow-hidden">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+            ))}
+          </div>
+        </>
+      ) : project.image ? (
         <>
           <img
-            src={project.image}
-            alt={project.title}
+            src={project.image.src}
+            alt={project.image.alt}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 h-full w-full object-cover opacity-45 transition-transform duration-500 group-hover:scale-[1.02]"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/45 to-transparent dark:from-black dark:via-black/55 dark:to-transparent" />
         </>
       ) : (
         <div className="absolute inset-0 flex items-center justify-center opacity-[0.08] dark:opacity-5">
@@ -76,7 +113,7 @@ function ProjectSlide({ project }: { project: (typeof projects)[number] }) {
 
       <div className="absolute inset-0 z-10 flex flex-col justify-between p-5 sm:p-7 md:p-10">
         <div className="flex items-start justify-between gap-4">
-          <span className="rounded-full border border-zinc-200 bg-white/90 px-3 py-1.5 text-[9px] font-mono uppercase tracking-[0.22em] text-zinc-700 sm:px-4 sm:py-2 sm:text-[10px] sm:tracking-[0.24em] dark:border-zinc-700 dark:bg-zinc-950/75 dark:text-zinc-300">
+          <span className="rounded-full border border-zinc-200/85 bg-white/82 px-3 py-1.5 text-[9px] font-mono uppercase tracking-[0.22em] text-zinc-700 shadow-sm backdrop-blur-md sm:px-4 sm:py-2 sm:text-[10px] sm:tracking-[0.24em] dark:border-zinc-700/80 dark:bg-zinc-950/70 dark:text-zinc-300">
             {project.type}
           </span>
 
@@ -85,15 +122,17 @@ function ProjectSlide({ project }: { project: (typeof projects)[number] }) {
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-black transition-transform hover:scale-110 sm:h-12 sm:w-12"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500 text-black shadow-[0_12px_24px_-12px_rgba(16,185,129,0.9)] transition-transform hover:scale-110 sm:h-12 sm:w-12"
             >
               <ArrowUpRight className="h-5 w-5" />
             </a>
           )}
         </div>
 
-        <div>
-          <h3 className="mb-3 text-2xl font-bold tracking-tight text-zinc-950 dark:text-white sm:mb-4 sm:text-3xl md:text-4xl xl:text-5xl">{project.title}</h3>
+        <div className="rounded-[1.4rem] border border-white/70 bg-white/82 p-4 shadow-[0_22px_40px_-24px_rgba(24,24,27,0.45)] backdrop-blur-md sm:p-5 md:p-6 dark:border-white/10 dark:bg-black/58 dark:shadow-[0_22px_40px_-24px_rgba(0,0,0,0.7)]">
+          <h3 className="mb-3 text-2xl font-bold tracking-tight text-zinc-950 dark:text-white sm:mb-4 sm:text-3xl md:text-4xl xl:text-5xl">
+            {project.title}
+          </h3>
           <p className="mb-5 max-w-2xl text-sm font-light leading-relaxed text-zinc-800 dark:text-zinc-300 sm:mb-7 sm:text-base md:mb-8 md:text-lg xl:text-xl">
             {project.description}
           </p>
@@ -102,7 +141,7 @@ function ProjectSlide({ project }: { project: (typeof projects)[number] }) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-zinc-200 bg-zinc-100 px-3 py-1.5 text-xs font-medium text-zinc-900 sm:px-4 sm:py-2 sm:text-sm dark:border-white/10 dark:bg-white/10 dark:text-white"
+                className="rounded-full border border-zinc-200 bg-zinc-100/96 px-3 py-1.5 text-xs font-medium text-zinc-900 sm:px-4 sm:py-2 sm:text-sm dark:border-white/10 dark:bg-white/10 dark:text-white"
               >
                 {tag}
               </span>
@@ -137,7 +176,7 @@ export function Projects() {
   const activeProject = projects[activeIndex];
 
   return (
-    <section id="project-fmp" className="section-render bg-white py-20 dark:bg-[#050505] sm:py-24 md:py-28 lg:py-32">
+    <section id="project-fmp" className="section-render bg-background py-20 dark:bg-[#050505] sm:py-24 md:py-28 lg:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-8 lg:gap-10 xl:grid-cols-[minmax(0,21rem)_1fr] xl:items-center">
           <motion.div
@@ -145,14 +184,14 @@ export function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="max-w-sm"
+            className="section-heading-stack max-w-sm"
           >
-            <h2 className="mb-5 text-4xl font-black leading-[0.9] tracking-[-0.06em] text-zinc-950 dark:text-white sm:text-5xl md:text-6xl xl:text-[4.2vw]">
+            <h2 className="display-title text-4xl font-black leading-[0.96] tracking-[-0.035em] text-zinc-950 dark:text-white sm:text-5xl md:text-6xl xl:text-[4.2vw]">
               SELECTED
               <br />
-              <span className="text-zinc-500 dark:text-zinc-500">WORKS</span>
+              <span className="text-emerald-500 dark:text-emerald-400">WORKS</span>
             </h2>
-            <p className="text-base text-zinc-700 dark:text-zinc-400 sm:text-lg md:text-xl">
+            <p className="section-heading-copy text-base text-zinc-700 dark:text-zinc-400 sm:text-lg md:text-xl">
               From robust full-stack SaaS platforms to high-performance microservices and open-source contributions.
             </p>
 
@@ -178,7 +217,7 @@ export function Projects() {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3">
+            <div className="mt-2 flex flex-wrap gap-2 sm:mt-3 sm:gap-3">
               {projects.map((project, index) => (
                 <button
                   key={project.title}

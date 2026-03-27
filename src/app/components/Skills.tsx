@@ -33,7 +33,7 @@ export function Skills() {
   ];
 
   return (
-    <section id="skills" className="section-render relative overflow-hidden bg-white py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
+    <section id="skills" className="section-render relative overflow-hidden bg-background py-20 dark:bg-[#050505] sm:py-24 lg:py-32">
       
       {/* Infinite Scrolling Ticker */}
       <div className="mb-14 flex flex-col gap-3 rotate-[-2deg] sm:mb-18 sm:gap-4 sm:scale-105 lg:mb-24">
@@ -42,12 +42,12 @@ export function Skills() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="mb-10 md:flex md:items-end md:justify-between lg:mb-16">
-          <div>
-            <h2 className="mb-4 text-3xl font-black leading-[0.92] tracking-[-0.05em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl">
-              BEYOND <span className="text-zinc-500 dark:text-zinc-600">CODE</span>
+        <div className="section-heading-block">
+          <div className="section-heading-stack">
+            <h2 className="display-title text-3xl font-black leading-[0.98] tracking-[-0.03em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl">
+              BEYOND <span className="text-emerald-500 dark:text-emerald-400">CODE</span>
             </h2>
-            <p className="max-w-xl text-base text-zinc-700 dark:text-zinc-400 sm:text-lg">
+            <p className="section-heading-copy text-base text-zinc-700 dark:text-zinc-400 sm:text-lg">
               A comprehensive background bridging IT infrastructure, technical support, and full-stack engineering gives me a holistic view of the software lifecycle.
             </p>
           </div>
