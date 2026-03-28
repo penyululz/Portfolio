@@ -1,223 +1,218 @@
+# Mohamad Faris Danial Portfolio
 
-# Untitled Portfolio App
+Personal portfolio built with React, Vite, Tailwind CSS v4, and Motion. The site showcases selected projects, experience, skills, and contact links with theme-aware visuals, animated transitions, and downloadable resume support.
 
-This project is a React + Vite single-page portfolio generated from Figma Make and customized with animated sections, scroll effects, and Tailwind CSS v4 styling.
+## Highlights
 
-Original Figma file:
-https://www.figma.com/design/LPbblE28IkBbTGdsx2sSss/Untitled
+- Hero section with theme-based looping video background
+- Theme-aware still backgrounds for the rest of the page
+- Swipeable project carousel on mobile and tablet
+- Resume download button in the hero and navbar
+- Two-tone section headings and timeline-driven experience layout
+- Contact cards for email, LinkedIn, and GitHub
+- Accessibility tools for text scaling, readable font, and link underlines
+- SEO metadata, structured data, manifest, favicons, and OG image
 
-## What This Project Includes
+## Stack
 
-- Full-screen hero section with parallax effects and animated intro copy
-- Horizontal scroll-driven project showcase
-- Animated skills marquee and competency cards
-- Timeline-style experience section
-- Custom motion cursor (desktop only)
-- Dark visual style with emerald accent theme
-
-## Tech Stack
-
-- React 18 (`react`, `react-dom`)
+- React 18
 - Vite 6
-- Tailwind CSS 4 (`@tailwindcss/vite`)
-- Framer Motion successor package (`motion`)
-- Icon library (`lucide-react`)
-- TypeScript source files (`.tsx` / `.ts`)
+- Tailwind CSS 4
+- Motion (`motion`)
+- Lucide React
+- TypeScript
 
-## Prerequisites
+## Requirements
 
-- Node.js 20+ (Node 24 works)
-- npm 10+ (npm 11 works)
+- Node.js 20+
+- npm 10+
 
 ## Quick Start
-
-From the project root:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173`).
-
-## Windows PowerShell Note
-
-If PowerShell blocks `npm` with an execution-policy error like:
-`npm.ps1 cannot be loaded because running scripts is disabled`
-
-Use Command Prompt invocation from PowerShell:
+If PowerShell blocks `npm`, use:
 
 ```powershell
 cmd /c npm install
 cmd /c npm run dev
 ```
 
-## Available Scripts
+## Scripts
 
-- `npm run dev` starts the local development server.
-- `npm run build` creates a production build in `dist/`.
+- `npm run dev` starts the development server
+- `npm run build` creates a production build in `dist/`
+- `npm run preview` previews the production build locally
 
 ## Project Structure
 
 ```text
 .
-|-- guidelines/
-|   `-- Guidelines.md
+|-- public/
+|   |-- background-dark.jpg
+|   |-- background-light.jpg
+|   |-- background-dark.mp4
+|   |-- background-light.mp4
+|   |-- hero-image.jpg
+|   |-- FMP.png
+|   |-- Gomail.png
+|   |-- tiktok.webp
+|   |-- immich.png
+|   |-- stirlingpdf.jpg
+|   |-- resume.pdf
+|   `-- brand/
 |-- src/
 |   |-- app/
 |   |   |-- App.tsx
+|   |   |-- site.ts
 |   |   `-- components/
 |   |       |-- About.tsx
+|   |       |-- AccessibilityTools.tsx
+|   |       |-- Contact.tsx
 |   |       |-- Experience.tsx
 |   |       |-- Footer.tsx
 |   |       |-- Hero.tsx
+|   |       |-- Navbar.tsx
 |   |       |-- Projects.tsx
-|   |       |-- Skills.tsx
-|   |       |-- figma/
-|   |       `-- ui/
-|   |-- imports/
-|   |   `-- pasted_text/
+|   |       `-- Skills.tsx
 |   `-- styles/
-|       |-- fonts.css
 |       |-- index.css
-|       |-- tailwind.css
 |       `-- theme.css
 |-- index.html
 |-- vite.config.ts
-|-- postcss.config.mjs
-|-- package.json
-`-- ATTRIBUTIONS.md
+|-- vercel.json
+`-- package.json
 ```
 
-## Architecture Overview
+## Main Areas
 
-### Entry and App Shell
+### App Shell
 
-- `src/main.tsx` mounts the React app.
-- `src/app/App.tsx` composes page sections in this order:
-  `Hero -> About -> Projects -> Skills -> Experience -> Footer`.
-- Global effects in `App.tsx`:
-  - smooth custom cursor using motion values/springs
-  - fixed noise overlay for texture
-  - centered ambient glow background
+- `src/app/App.tsx` manages theme state and composes page sections
+- Theme preference is stored in `localStorage`
+- The hero uses video backgrounds; the rest of the page uses theme-aware JPG textures
 
-### Section Components
+### Content Sections
 
-- `Hero.tsx`
-  - text reveal animation with staggered motion variants
-  - scroll-linked parallax elements
-  - CTA anchor (`#project-fmp`)
-- `About.tsx`
-  - personal profile narrative and education details
-  - slide/fade reveal when section enters viewport
-- `Projects.tsx`
-  - scroll-linked horizontal card track
-  - featured external link for FMP project
-- `Skills.tsx`
-  - dual-direction infinite marquee rows
-  - bento-style cards for core competencies
-- `Experience.tsx`
-  - animated vertical timeline
-  - progressive line fill based on scroll progress
-- `Footer.tsx`
-  - dynamic current-year copyright line
+- `Hero.tsx`: intro, CTA buttons, resume download, hero portrait, theme video
+- `About.tsx`: profile summary, education, working philosophy
+- `Projects.tsx`: carousel with local project artwork and touch swipe support
+- `Skills.tsx`: marquee stack and competency cards
+- `Experience.tsx`: animated career timeline
+- `Contact.tsx`: contact cards for email, LinkedIn, and GitHub
+- `Footer.tsx`: footer credits and copyright
 
-### Styling System
+### Styling
 
-- `src/styles/index.css` imports all style layers.
-- `src/styles/tailwind.css`:
-  - registers Tailwind v4
-  - scans project files with `@source`
-  - includes `tw-animate-css`
-- `src/styles/theme.css`:
-  - defines design tokens via CSS variables
-  - maps theme tokens to Tailwind `@theme inline`
-  - adds base typography and default element styles
+- `src/styles/theme.css` contains CSS variables and utility classes
+- Tailwind theme tokens are mapped through `@theme inline`
+- Light and dark mode are controlled via the `.dark` class on the document root
 
-### Build Configuration
+## Content and Asset Editing
 
-- `vite.config.ts`:
-  - React plugin + Tailwind plugin
-  - `@` alias points to `src/`
-  - allows raw imports for `svg` and `csv`
-- `postcss.config.mjs` is intentionally minimal; Tailwind v4 is configured via Vite plugin.
+### Personal Content
 
-## Customization Guide
-
-### Update Personal Content
-
-Edit these files:
+Update text and links in:
 
 - `src/app/components/Hero.tsx`
 - `src/app/components/About.tsx`
 - `src/app/components/Projects.tsx`
 - `src/app/components/Skills.tsx`
 - `src/app/components/Experience.tsx`
-- `src/app/components/Footer.tsx`
+- `src/app/components/Contact.tsx`
+- `src/app/site.ts`
 
-### Replace Images
+### Images and Video
 
-- Hero portrait and project cover images currently use Unsplash URLs.
-- Swap `src` values in section components with your own URLs or local assets.
+Place or replace assets in `public/`.
 
-### Change Theme Colors and Tokens
+Current important public assets:
 
-- Update CSS variables in `src/styles/theme.css`.
-- Primary accent in sections is currently emerald-focused (`emerald-*` Tailwind classes).
+- `hero-image.jpg`
+- `background-light.jpg`
+- `background-dark.jpg`
+- `background-light.mp4`
+- `background-dark.mp4`
+- `resume.pdf`
+- project screenshots such as `FMP.png`, `Gomail.png`, `tiktok.webp`
 
-## Build and Deploy
+### Resume
 
-Build production output:
+The resume download path is centralized in `src/app/site.ts` and currently points to:
+
+- `public/resume.pdf`
+
+## Deployment
+
+Build:
 
 ```bash
 npm run build
 ```
 
-Preview the production build locally:
+Deploy the generated `dist/` folder to any static host.
 
-```bash
-npm run preview
-```
+Current deployment support:
 
-Output is generated in `dist/`.
+- Vercel: `vercel.json` includes SPA rewrites
+- Netlify: `public/_redirects` provides SPA fallback
+- Cloudflare Pages: publish `dist/`
 
-Deployment notes:
+## SEO and Metadata
 
-- Vercel: import the project and use the default Vite settings. `vercel.json` is included with an SPA rewrite.
-- Netlify: set the build command to `npm run build` and publish directory to `dist`. The `public/_redirects` file is included for SPA fallback.
-- Cloudflare Pages: use `npm run build` and publish `dist/`.
+Configured in `index.html` and `public/`:
 
-SEO and metadata notes:
+- meta description, Open Graph, Twitter cards
+- structured data (`Person` schema)
+- web manifest
+- favicon set and app icons
+- OG preview image
+- canonical URL upgrade at runtime based on deployment origin
 
-- Favicons, app icons, and a social preview image now live in `public/`.
-- Page metadata, Open Graph tags, Twitter cards, structured data, and the web manifest are defined in `index.html`.
-- Canonical and social image URLs are upgraded at runtime to the deployed origin so local builds and preview deployments do not ship a wrong domain by default.
+## Security Notes
+
+Current security posture:
+
+- Low attack surface because this is a static front-end portfolio
+- No backend, login flow, admin area, or exposed API integration in the shipped app
+- No project `.env` files, API keys, or auth tokens are expected in the client code
+- External profile links use `noopener noreferrer`
+- `localStorage` is only used for theme and accessibility preferences
+
+Hardening still recommended:
+
+- Add a Content Security Policy and deployment security headers
+- Trim unused dependencies from `package.json` to reduce supply-chain risk
+- Keep npm packages updated and run vulnerability audits periodically
 
 ## Troubleshooting
 
-### `npm.ps1` execution policy error (Windows)
-
-Use:
+### PowerShell blocks npm
 
 ```powershell
 cmd /c npm install
 cmd /c npm run dev
 ```
 
-### Dev server fails with permissions in restricted environments
+### Build output
 
-In sandboxed environments, process spawn restrictions can block Vite/esbuild. Run locally on your own machine terminal instead of restricted sandboxes.
+Production files are written to:
 
-### Port already in use
+- `dist/`
 
-Run Vite on another port:
+### Change background assets
 
-```bash
-npm run dev -- --port 5174
-```
+Replace the files in `public/` with the same names:
 
-## Credits and Licenses
+- `background-light.jpg`
+- `background-dark.jpg`
+- `background-light.mp4`
+- `background-dark.mp4`
 
-- UI building blocks from `shadcn/ui` (MIT): see `ATTRIBUTIONS.md`
-- Photos from Unsplash: see `ATTRIBUTIONS.md`
-  
+## Credits
+
+- UI building blocks from `shadcn/ui` components used in the project
+- Brand assets, imagery, and portfolio content belong to Mohamad Faris Danial
