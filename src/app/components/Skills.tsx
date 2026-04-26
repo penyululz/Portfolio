@@ -22,14 +22,14 @@ const MarqueeRow = ({ items, reverse = false, speed = 40 }: { items: string[], r
 };
 
 export function Skills() {
-  const row1 = ["React", "TypeScript", "Tailwind CSS", "Go", "Python", "Astro"];
-  const row2 = ["PostgreSQL", "Docker", "Linux", "Git", "Supabase", "Cybersecurity"];
+  const row1 = ["PC Troubleshooting", "Hardware Repair", "OS Installation", "Technical Support", "React", "TypeScript"];
+  const row2 = ["Tailwind CSS", "Supabase", "PostgreSQL", "Docker", "Linux", "Vercel Deployment"];
 
   const softSkills = [
-    { title: "Leadership & Strategy", icon: Users, desc: "Leading dev teams and steering technical delivery." },
-    { title: "System Architecture", icon: Network, desc: "Designing scalable, secure, and robust IT environments." },
-    { title: "Backend Systems", icon: Database, desc: "Building secure auth, APIs, and optimizing database logic." },
-    { title: "Frontend Engineering", icon: Code2, desc: "Crafting highly responsive and modern user interfaces." },
+    { title: "Hardware & IT Support", icon: Users, desc: "PC troubleshooting, hardware repair, OS installation, and day-to-day technical support in real user environments." },
+    { title: "Deployment & Systems", icon: Network, desc: "Basic Docker usage and modification, Linux environments, Vercel deployment, and environment configuration." },
+    { title: "Software Development", icon: Database, desc: "React, TypeScript, Tailwind CSS, Supabase/PostgreSQL, and dashboard-focused web application development." },
+    { title: "AI-Assisted Development", icon: Code2, desc: "Use AI-assisted coding workflows for speed, then review, test, debug, and adjust the code before shipping." },
   ];
 
   return (
@@ -43,15 +43,15 @@ export function Skills() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="section-heading-block">
-          <div className="section-heading-stack">
-            <h2 className="display-title text-3xl font-black leading-[0.98] tracking-[-0.03em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl">
-              BEYOND <span className="text-emerald-500 dark:text-emerald-400">CODE</span>
-            </h2>
-            <p className="section-heading-copy text-base text-zinc-700 dark:text-zinc-400 sm:text-lg">
-              A comprehensive background bridging IT infrastructure, technical support, and full-stack engineering gives me a holistic view of the software lifecycle.
-            </p>
+            <div className="section-heading-stack">
+              <h2 className="display-title text-3xl font-black leading-[0.98] tracking-[-0.03em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl">
+              CORE <span className="text-emerald-500 dark:text-emerald-400">SKILLS</span>
+              </h2>
+              <p className="section-heading-copy text-base text-zinc-700 dark:text-zinc-400 sm:text-lg">
+              Skills grouped around hands-on support, software development, deployment work, and AI-assisted coding workflows.
+              </p>
+            </div>
           </div>
-        </div>
 
         {/* Bento Grid for Core Competencies */}
         <div className="grid md:grid-cols-2 gap-4 lg:gap-6">

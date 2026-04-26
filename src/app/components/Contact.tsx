@@ -3,11 +3,11 @@ import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
 const contactLinks = [
   {
-    label: "Email",
+    label: "Contact Me",
     href: "mailto:farismalekofficial@gmail.com",
     icon: Mail,
-    eyebrow: "Direct Contact",
-    description: "Reach out for collaborations, freelance projects, or product discussions.",
+    eyebrow: "Email | Phone | Malaysia",
+    description: "farismalekofficial@gmail.com | +60 13 5858 199. Based in Malaysia and open to technical roles or project discussions.",
     external: false,
   },
   {
@@ -15,15 +15,15 @@ const contactLinks = [
     href: "https://www.linkedin.com/in/mohamad-faris-danial-abdul-malek-497246294",
     icon: Linkedin,
     eyebrow: "Professional Profile",
-    description: "Connect with me professionally and follow my journey in software engineering.",
+    description: "Background, experience, and ongoing work across IT support, development, and deployment.",
     external: true,
   },
   {
     label: "GitHub",
     href: "https://github.com/penyululz",
     icon: Github,
-    eyebrow: "Code & Repositories",
-    description: "Browse my projects, experiments, and open-source work on GitHub.",
+    eyebrow: "Projects & Code",
+    description: "Examples of web apps, system setups, and the code I review, adapt, and deploy.",
     external: true,
   },
 ];
@@ -47,14 +47,13 @@ export function Contact() {
                 </span>
 
                 <h2 className="display-title text-3xl font-black leading-[0.94] tracking-[-0.035em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl xl:text-[4.2vw]">
-                  LET&apos;S
+                  CONTACT
                   <br />
-                  <span className="text-emerald-500 dark:text-emerald-400">CONNECT</span>
+                  <span className="text-emerald-500 dark:text-emerald-400">ME</span>
                 </h2>
 
                 <p className="section-heading-copy max-w-lg text-sm leading-relaxed text-zinc-700 dark:text-zinc-400 sm:text-base md:text-lg">
-                  Open to conversations around SaaS, infrastructure-aware products, frontend engineering, and practical
-                  systems built with clarity and intent.
+                  Open to conversations about IT support, web application work, deployment tasks, and practical technical roles. I focus on clear communication and usable solutions.
                 </p>
               </div>
             </div>

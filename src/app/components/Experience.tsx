@@ -11,53 +11,53 @@ export function Experience() {
 
   const experiences = [
     {
-      period: "Present",
-      role: "Independent Full-Stack Developer",
-      company: "Self-Employed & Academic Studies",
+      period: "2025 - Present",
+      role: "Independent Technical Builder",
+      company: "Personal Projects & Academic Studies",
       description:
-        "Focusing on completing a Bachelor's Degree in Computer Science while actively developing SaaS platforms like Facility Management Partner (FMP). Transitioning from IT support into full-stack software engineering.",
+        "Currently completing a part-time Computer Science degree at MSU while building and deploying personal web applications. This phase is focused on strengthening practical development, debugging, and system delivery skills.",
     },
     {
       period: "June 2025 - Previously Active",
       role: "Lead Assistant Technical Specialist",
       company: "Microbumi Systems and Services (Texas Instruments)",
       description:
-        "Maintained server systems and physical infrastructure (OEE systems). Implemented cybersecurity protocols, performed network patching, and managed device deployments.",
+        "Supported live technical environments by maintaining server-related systems, handling network patching, device deployment, and first-line troubleshooting. Worked in a real operational setting where stability, reporting, and fast issue response mattered.",
     },
     {
       period: "Oct 2024 - Dec 2024",
       role: "DevOps Engineer (Internship / Freelance)",
       company: "SatuSky",
       description:
-        "Tested and managed web applications, assisted in deployment utilizing Docker and Linux environments. Contributed to system optimization.",
+        "Helped test and maintain web applications, then assisted with deployment work in Docker and Linux environments. Gained hands-on exposure to environment setup, runtime issues, and basic system optimization.",
     },
     {
       period: "2023 - 2024",
       role: "Technical Customer Service",
       company: "ALL IT Hypermarket",
       description:
-        "Provided technical support, hardware installation, and troubleshooting. Handled warranty services and improved customer satisfaction through effective communication.",
+        "Provided technical support for customers, diagnosed hardware and software issues, and handled installations, testing, and warranty cases. Strengthened communication and problem solving in a fast retail support environment.",
     },
     {
       period: "May 2023 - Dec 2023",
       role: "Project Lead Developer (Project-Based)",
       company: "TikTok",
       description:
-        "Led the development of a web-based coaching system, managing both frontend and backend implementation while coordinating a small development team.",
+        "Worked on a project-based coaching platform, helping coordinate frontend and backend implementation and keeping the system practical for users. This role gave me hands-on experience turning requirements into a working web application.",
     },
     {
       period: "2022 - 2023",
       role: "Computer Technician",
       company: "Eden Hafiz Group",
       description:
-        "Delivered technical repair and troubleshooting services. Managed warranty-related issues and handled product servicing.",
+        "Handled computer repair, servicing, and warranty-related troubleshooting. Learned to diagnose issues quickly, explain solutions clearly, and keep systems usable for customers.",
     },
     {
       period: "2021 - 2022",
       role: "Computer Technician",
       company: "Kak Mira Komputer",
       description:
-        "Diagnosed and repaired hardware/software issues. Performed system installations and assisted customers with technical troubleshooting.",
+        "Diagnosed everyday hardware and software problems, carried out OS installations, and supported customers with practical fixes. This role built the foundation for my troubleshooting and hands-on IT work.",
     },
   ];
 
@@ -67,7 +67,7 @@ export function Experience() {
         <div className="section-heading-block">
           <div className="section-heading-stack">
             <h2 className="display-title text-3xl font-black leading-[0.98] tracking-[-0.03em] text-zinc-950 dark:text-white sm:text-4xl md:text-5xl lg:text-6xl">
-            THE <span className="text-emerald-500">TIMELINE</span>
+            WORK <span className="text-emerald-500">EXPERIENCE</span>
             </h2>
           </div>
         </div>

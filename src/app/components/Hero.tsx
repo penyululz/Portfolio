@@ -75,7 +75,7 @@ export function Hero({ theme }: { theme: "light" | "dark" }) {
                 <motion.div variants={itemVariants} className="flex items-center gap-3 sm:gap-4">
                   <span className="h-[2px] w-10 bg-emerald-500 sm:w-12" />
                   <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-400 sm:text-sm sm:tracking-widest">
-                    Software Engineer
+                    Technical Builder | IT Support | Deployment & Systems
                   </span>
                 </motion.div>
               </div>
@@ -102,8 +102,7 @@ export function Hero({ theme }: { theme: "light" | "dark" }) {
                   variants={itemVariants}
                   className="text-base font-light leading-relaxed text-zinc-700 dark:text-zinc-400 sm:text-lg md:text-xl"
                 >
-                  Bridging IT infrastructure with robust SaaS development. 
-                  Currently engineering scalable platforms and pursuing Computer Science.
+                  Technical Builder focused on IT systems, web apps, and practical deployment. I combine hands-on IT support experience with AI-assisted development to build, troubleshoot, and deploy working systems. Currently pursuing a part-time Computer Science degree at MSU (weekend classes).
                 </motion.p>
               </div>
 
@@ -113,7 +112,7 @@ export function Hero({ theme }: { theme: "light" | "dark" }) {
                   className="group relative flex items-center gap-3 overflow-hidden rounded-full bg-zinc-900 px-6 py-3.5 text-sm font-bold text-white transition-transform duration-200 hover:scale-[1.02] dark:bg-white dark:text-black sm:px-8 sm:py-4 sm:text-base"
                 >
                   <div className="absolute inset-0 translate-y-[100%] bg-emerald-400 transition-transform duration-200 ease-out group-hover:translate-y-0" />
-                  <span className="relative z-10">Explore Work</span>
+                  <span className="relative z-10">View Projects</span>
                   <ArrowDownRight className="relative z-10 h-5 w-5 transition-transform duration-200 group-hover:rotate-[-45deg]" />
                 </a>
 

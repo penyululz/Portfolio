@@ -8,7 +8,7 @@ const navItems = [
   { label: "Projects", href: "#project-fmp" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact Me", href: "#contact" },
 ];
 
 export function Navbar({
@@ -62,7 +62,7 @@ export function Navbar({
             className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-black shadow-[0_14px_32px_-18px_rgba(16,185,129,0.85)] transition-transform hover:scale-[1.02]"
           >
             <Download className="h-4 w-4" />
-            Resume
+            Download Resume
           </a>
 
           <button

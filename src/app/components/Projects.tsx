@@ -10,10 +10,10 @@ type ProjectImage = {
 const projects = [
   {
     title: "Facility Management Partner",
-    type: "SaaS Platform",
+    type: "Web Platform",
     description:
-      "A multi-tenant application streamlining facility operations. Coordinates maintenance, vendors, and complex bookings workflows.",
-    tags: ["React", "Supabase", "PostgreSQL", "Tailwind"],
+      "Built a web platform for facility teams to manage bookings, maintenance requests, vendors, and daily operations in one place. Focused on structuring the UI, connecting Supabase services, and deploying a working version.",
+    tags: ["React", "Supabase", "PostgreSQL", "Vercel"],
     image: {
       src: "/FMP.png",
       alt: "Facility Management Partner dashboard preview",
@@ -22,42 +22,26 @@ const projects = [
   },
   {
     title: "TikTok System",
-    type: "Web Application",
+    type: "Coaching Platform",
     description:
-      "Led development of a web-based coaching system, architecting the platform and coordinating end-to-end team delivery.",
-    tags: ["Architecture", "Team Lead", "Delivery"],
+      "Built a web-based coaching platform to organize program content and user workflows. Worked across the frontend and backend setup, helped shape the structure, and kept the system practical for day-to-day use.",
+    tags: ["React", "Web App", "Frontend", "Backend"],
     image: {
       src: "/tiktok.webp",
       alt: "TikTok System project preview",
     },
   },
   {
-    title: "Go Mail",
-    type: "Backend Service",
+    title: "WebForge",
+    type: "Business Website",
     description:
-      "Robust email system built entirely in Go featuring secure authentication with comprehensive SMTP and IMAP capabilities.",
-    tags: ["Go", "SMTP/IMAP", "Auth"],
+      "Built and deployed the WebForge site to present practical websites and web systems for day-to-day business operations. Focused on structuring the offer clearly, showcasing TicketPro, and turning the service into a working public website.",
+    tags: ["Business Website", "Operations", "Deployment", "TicketPro"],
     image: {
-      src: "/Gomail.png",
-      alt: "Go Mail project preview",
+      src: "/webforge.png",
+      alt: "WebForge website preview",
     },
-  },
-  {
-    title: "Immich & Stirling PDF",
-    type: "Open Source",
-    description:
-      "Contributed to high-performance systems including a Docker-optimized photo manager and a comprehensive PDF manipulation tool.",
-    tags: ["Docker", "Optimization", "System Dev"],
-    images: [
-      {
-        src: "/immich.png",
-        alt: "Immich project preview",
-      },
-      {
-        src: "/stirlingpdf.jpg",
-        alt: "Stirling PDF project preview",
-      },
-    ],
+    link: "https://www.webforge.my",
   },
 ];
 
@@ -203,10 +187,10 @@ export function Projects() {
             <h2 className="display-title text-4xl font-black leading-[0.96] tracking-[-0.035em] text-zinc-950 dark:text-white sm:text-5xl md:text-6xl xl:text-[4.2vw]">
               SELECTED
               <br />
-              <span className="text-emerald-500 dark:text-emerald-400">WORKS</span>
+              <span className="text-emerald-500 dark:text-emerald-400">PROJECTS</span>
             </h2>
             <p className="section-heading-copy text-base text-zinc-700 dark:text-zinc-400 sm:text-lg md:text-xl">
-              From robust full-stack SaaS platforms to high-performance microservices and open-source contributions.
+              Projects centered on usable web apps, backend work, and deployment-oriented system setups.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4 md:mt-10">

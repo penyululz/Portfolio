@@ -14,7 +14,7 @@ export function About() {
             className="section-heading-stack lg:col-span-5"
           >
             <h2 className="display-title text-[18vw] font-black leading-[0.88] tracking-[-0.04em] text-zinc-950 dark:text-white sm:text-[13vw] lg:text-[6vw]">
-              THE<br/><span className="text-emerald-500 dark:text-emerald-400">STORY</span>
+              ABOUT<br/><span className="text-emerald-500 dark:text-emerald-400">ME</span>
             </h2>
             <div className="h-2 w-16 rounded-full bg-emerald-500 sm:w-20" />
           </motion.div>
@@ -27,11 +27,11 @@ export function About() {
             className="space-y-6 lg:col-span-7 lg:space-y-8"
           >
             <p className="text-xl font-light leading-relaxed text-zinc-900 dark:text-white sm:text-2xl md:text-3xl">
-              I am a hybrid professional bridging the gap between <strong className="font-bold text-emerald-600 dark:text-emerald-400">hardware infrastructure</strong> and <strong className="font-bold text-emerald-600 dark:text-emerald-400">scalable software engineering</strong>.
+              I started with <strong className="font-bold text-emerald-600 dark:text-emerald-400">hardware work and IT support</strong>, learning how to diagnose problems, keep systems running, and help users solve real technical issues.
             </p>
             
             <p className="text-base leading-relaxed text-zinc-700 dark:text-zinc-400 sm:text-lg md:text-xl">
-              My journey began in IT and system operations, managing physical servers, network patching, and cybersecurity protocols. Today, I leverage that deep system-level understanding to build robust, production-ready SaaS applications.
+              That experience led me into web development and system building. I use AI tools to move faster, but I still review, debug, and improve the output myself so the final result is usable, stable, and ready to deploy.
             </p>
 
             <div className="mt-8 grid gap-6 border-t border-zinc-200 pt-6 dark:border-zinc-800/50 sm:grid-cols-2 sm:gap-8 sm:pt-8">
@@ -40,15 +40,11 @@ export function About() {
                 <ul className="space-y-3 text-zinc-800 dark:text-zinc-300">
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full" />
-                    BSc Computer Science (Ongoing)
+                    Bachelor in Computer Science, Management & Science University (MSU)
                   </li>
                   <li className="flex items-center gap-3">
                     <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full dark:bg-zinc-600" />
-                    DKM in Computer System Admin
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full dark:bg-zinc-600" />
-                    SKM in Computer System Ops
+                    2025 - Present | Part-time, weekend classes
                   </li>
                 </ul>
               </div>
@@ -56,7 +52,7 @@ export function About() {
               <div>
                 <h3 className="text-emerald-500 font-mono text-sm tracking-widest uppercase mb-4">Core Philosophy</h3>
                 <p className="text-zinc-700 dark:text-zinc-400">
-                  Hands-on, project-based learning. I integrate AI tools to accelerate development while ensuring deep understanding through rigorous testing and root-cause analysis.
+                  I focus on building real systems that work in practice, not just prototypes. Clear structure, reliable behavior, and steady iteration matter more to me than overcomplicating the stack.
                 </p>
               </div>
             </div>
