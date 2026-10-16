@@ -34,7 +34,9 @@ It replaces `E:\Portfolio-master\Portfolio-master` (React/Vite) and keeps that s
 | 8 | `contact` | CONTACT / ME | Email/phone, LinkedIn, GitHub cards. |
 | — | — | — | Footer; floating Accessibility tools widget. |
 
-Navbar items (no "Home"; the logo links to `#home`): About, Teaching, Projects, Skills, Experience, Credentials, Contact.
+Navbar items (no "Home"; the logo links to `/#home`): About, Teaching, Projects, Skills, Experience, Credentials, Contact. Links are root-relative (`/#about` …) so they also work from sub-pages.
+
+Case study pages: `/projects/assetflow` and `/projects/melodia`, linked from their carousel slides by "Read case study". See `2026-10-16-case-studies-design.md`.
 
 ## 4. Content inventory (exact values)
 
