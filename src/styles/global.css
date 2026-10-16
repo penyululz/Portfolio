@@ -112,3 +112,37 @@
     animation: slide-in-prev 0.38s ease-out;
   }
 }
+
+/* Skills marquee */
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-track {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .marquee-left {
+    animation: marquee-left 35s linear infinite;
+  }
+
+  .marquee-right {
+    animation: marquee-right 45s linear infinite;
+  }
+}

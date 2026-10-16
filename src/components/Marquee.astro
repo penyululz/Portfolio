@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: string[];
+  reverse?: boolean;
+  seconds: number;
+}
+
+const { items, reverse = false, seconds } = Astro.props;
+---
+
+<div data-marquee aria-hidden="true" class="flex overflow-hidden whitespace-nowrap">
+  <div
+    class:list={["marquee-track flex w-max items-center gap-12 px-6 py-4", reverse ? "marquee-right" : "marquee-left"]}
+    style={`animation-duration: ${seconds}s`}
+  >
+    {
+      [...items, ...items].map((item) => (
+        <span class="flex items-center gap-4">
+          <span class="text-4xl font-black tracking-tighter text-zinc-600 uppercase transition-colors duration-300 hover:text-emerald-500 md:text-6xl dark:text-zinc-800">
+            {item}
+          </span>
+          <span class="h-3 w-3 rounded-full bg-emerald-500/50" />
+        </span>
+      ))
+    }
+  </div>
+</div>
