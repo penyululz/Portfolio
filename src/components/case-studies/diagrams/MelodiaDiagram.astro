@@ -1,0 +1,96 @@
+---
+// Melodia on two devices and the transfer between them, drawn narrow enough to read at 360 px.
+const box = "fill-white stroke-zinc-300 dark:fill-zinc-900 dark:stroke-zinc-700";
+const accentBox = "fill-emerald-50 stroke-emerald-500 dark:fill-emerald-950/60 dark:stroke-emerald-500";
+const title = "fill-zinc-950 text-[14px] font-bold dark:fill-white";
+const note = "fill-zinc-600 text-[12px] dark:fill-zinc-400";
+const line = "stroke-zinc-400 dark:stroke-zinc-500";
+const columns = [
+  {
+    x: 16,
+    head: "Windows",
+    boxes: [
+      ["Electron window", "tray playback"],
+      ["Local service", "127.0.0.1 only"],
+      ["SQLite", "library · history"],
+    ],
+  },
+  {
+    x: 186,
+    head: "Android",
+    boxes: [
+      ["App UI", "adapted from Stash"],
+      ["Media3 service", "background playback"],
+      ["SQLite + MediaStore", "Music/Melodia"],
+    ],
+  },
+];
+---
+
+<figure class="my-8 max-w-xl">
+  <svg viewBox="0 0 360 372" role="img" aria-labelledby="ml-diagram-title ml-diagram-desc" class="h-auto w-full">
+    <title id="ml-diagram-title">Melodia architecture</title>
+    <desc id="ml-diagram-desc">
+      On Windows, an Electron window talks to a local service on 127.0.0.1 backed by SQLite. On Android, the app UI
+      drives a native Media3 playback service, with a SQLite catalogue and songs in MediaStore. The two devices exchange
+      libraries by QR transfer over private Wi-Fi with a pairing token and a SHA-256 check per track, or by a
+      .melodia-library package.
+    </desc>
+    <defs>
+      <marker id="ml-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0 0 8 4 0 8z" class="fill-zinc-400 dark:fill-zinc-500"></path>
+      </marker>
+    </defs>
+
+    {
+      columns.map((col) => (
+        <g>
+          <rect x={col.x} y="8" width="158" height="36" rx="10" class={accentBox} />
+          <text x={col.x + 79} y="31" text-anchor="middle" class={title}>
+            {col.head}
+          </text>
+          {col.boxes.map(([name, detail], i) => (
+            <g>
+              <rect x={col.x} y={62 + i * 66} width="158" height="50" rx="10" class={box} />
+              <text x={col.x + 79} y={83 + i * 66} text-anchor="middle" class={title}>
+                {name}
+              </text>
+              <text x={col.x + 79} y={101 + i * 66} text-anchor="middle" class={note}>
+                {detail}
+              </text>
+              {i < 2 && (
+                <line
+                  x1={col.x + 79}
+                  y1={112 + i * 66}
+                  x2={col.x + 79}
+                  y2={126 + i * 66}
+                  class={line}
+                  stroke-width="1.5"
+                  marker-end="url(#ml-arrow)"
+                />
+              )}
+            </g>
+          ))}
+          <line
+            x1={col.x + 79}
+            y1="244"
+            x2={col.x + 79}
+            y2="270"
+            class={line}
+            stroke-width="1.5"
+            marker-start="url(#ml-arrow)"
+            marker-end="url(#ml-arrow)"
+          />
+        </g>
+      ))
+    }
+
+    <rect x="16" y="272" width="328" height="56" rx="10" class={accentBox}></rect>
+    <text x="180" y="296" text-anchor="middle" class={title}>QR transfer over private Wi-Fi</text>
+    <text x="180" y="315" text-anchor="middle" class={note}>pairing token · SHA-256 check per track</text>
+    <text x="180" y="356" text-anchor="middle" class={note}>or a .melodia-library package by USB or Nearby Share</text>
+  </svg>
+  <figcaption class="mt-3 text-sm text-zinc-700 dark:text-zinc-400">
+    Each device keeps its own private library; transfers go device to device, never through a server.
+  </figcaption>
+</figure>
