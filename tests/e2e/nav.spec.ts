@@ -63,3 +63,37 @@ test("mobile menu closes after choosing a link", async ({ page }, testInfo) => {
   await expect(page.locator("#mobile-menu")).toBeHidden();
   await expect(page.locator('[aria-controls="mobile-menu"]')).toHaveAttribute("aria-expanded", "false");
 });
+
+test("first Tab focuses a visible skip link to main", async ({ page }) => {
+  await page.goto("/");
+  await page.keyboard.press("Tab");
+  const skip = page.getByRole("link", { name: "Skip to content" });
+  await expect(skip).toBeFocused();
+  await expect(skip).toHaveAttribute("href", "#main");
+  const box = await skip.boundingBox();
+  expect(box?.width ?? 0).toBeGreaterThan(40);
+  expect(box?.height ?? 0).toBeGreaterThan(20);
+});
+
+test("no-JS menu link is hidden when scripts run", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "mobile menu only");
+  await page.goto("/");
+  await expect(page.getByRole("button", { name: "Open navigation menu" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Open navigation menu" })).toBeHidden();
+});
+
+test.describe("without JavaScript at 360", () => {
+  test.use({ javaScriptEnabled: false, viewport: { width: 360, height: 740 } });
+
+  test("menu link reveals section links", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== "mobile", "phone viewport only");
+    await page.goto("/");
+    const menu = page.locator("#mobile-menu");
+    await expect(menu).toBeHidden();
+    await page.getByRole("link", { name: "Open navigation menu" }).click();
+    await expect(menu).toBeVisible();
+    await menu.getByRole("link", { name: "Projects" }).click();
+    await expect(page.locator("#projects")).toBeInViewport();
+    await expect(menu).toBeHidden();
+  });
+});

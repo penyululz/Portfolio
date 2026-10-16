@@ -7,7 +7,6 @@ import ffmpegPath from "ffmpeg-static";
 
 const OLD = path.resolve("../Portfolio-master/public");
 const CERTS = path.resolve("E:/cert and resume");
-const ASSETFLOW = path.resolve("E:/dev/labreport-v3");
 
 // The certificate folder holds PDFs that print the owner's national IC number.
 // Only these files may ever leave it.
@@ -24,7 +23,6 @@ const copies = [
   ["src/assets/portrait.jpg", path.join(OLD, "hero-image.jpg")],
   ["src/assets/bg-light.jpg", path.join(OLD, "background-light.jpg")],
   ["src/assets/bg-dark.jpg", path.join(OLD, "background-dark.jpg")],
-  ["src/assets/projects/assetflow.png", path.join(ASSETFLOW, "docs/screenshots/after/dark-1366-01-home.png")],
   ["src/assets/projects/fmp.png", path.join(OLD, "FMP.png")],
   ["src/assets/projects/webforge.png", path.join(OLD, "webforge.png")],
   ["src/assets/projects/tiktok.webp", path.join(OLD, "tiktok.webp")],

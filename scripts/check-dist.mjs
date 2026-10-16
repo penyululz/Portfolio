@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { extractText, getDocumentProxy } from "unpdf";
 
 const MiB = 1024 * 1024;
 const MAX_FILE = 6 * MiB;
@@ -10,10 +11,25 @@ const NRIC = /\b\d{6}-?\d{2}-?\d{4}\b/;
 const TEXT_EXT = new Set([".html", ".js", ".mjs", ".css", ".json", ".xml", ".txt", ".svg", ".webmanifest"]);
 
 /**
- * @param {string} dir
- * @returns {{ file: string, rule: "nric" | "pdf" | "file-size" | "total-size" }[]}
+ * Extract the text of every page of a PDF, or null when it cannot be parsed.
+ * @param {string} file
+ * @returns {Promise<string | null>}
  */
-export function checkDist(dir) {
+async function pdfText(file) {
+  try {
+    const doc = await getDocumentProxy(new Uint8Array(fs.readFileSync(file)));
+    const { text } = await extractText(doc, { mergePages: true });
+    return text;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * @param {string} dir
+ * @returns {Promise<{ file: string, rule: "nric" | "pdf" | "pdf-unreadable" | "file-size" | "total-size" }[]>}
+ */
+export async function checkDist(dir) {
   const problems = [];
   let total = 0;
   const entries = fs.readdirSync(dir, { recursive: true, withFileTypes: true });
@@ -26,6 +42,11 @@ export function checkDist(dir) {
     total += size;
     if (TEXT_EXT.has(ext) && NRIC.test(fs.readFileSync(abs, "utf8"))) problems.push({ file, rule: "nric" });
     if (ext === ".pdf" && file !== "resume.pdf") problems.push({ file, rule: "pdf" });
+    if (file === "resume.pdf") {
+      const text = await pdfText(abs);
+      if (text === null) problems.push({ file, rule: "pdf-unreadable" });
+      else if (NRIC.test(text)) problems.push({ file, rule: "nric" });
+    }
     if (size > MAX_FILE) problems.push({ file, rule: "file-size" });
   }
   if (total > MAX_TOTAL) problems.push({ file: "(total)", rule: "total-size" });
@@ -34,7 +55,7 @@ export function checkDist(dir) {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const dir = process.argv[2] ?? "dist";
-  const problems = checkDist(dir);
+  const problems = await checkDist(dir);
   if (problems.length > 0) {
     for (const p of problems) console.error(`${p.rule}: ${p.file}`);
     process.exit(1);

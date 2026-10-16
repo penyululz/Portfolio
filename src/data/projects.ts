@@ -1,5 +1,6 @@
 import type { Project } from "./types";
 import assetflow from "../assets/projects/assetflow.png";
+import melodia from "../assets/projects/melodia.webp";
 import fmp from "../assets/projects/fmp.png";
 import webforge from "../assets/projects/webforge.png";
 import tiktok from "../assets/projects/tiktok.webp";
@@ -30,7 +31,7 @@ export const projects: Project[] = [
     summary:
       "An open-source, local-first music player for your own audio library. It plays offline with gapless playback, crossfade and replay gain, keeps playlists and recommendations on the device, and moves libraries between Windows and Android by QR transfer with SHA-256 verification. No account, no cloud.",
     tags: ["Electron", "Next.js", "Android", "SQLite", "GPLv3"],
-    media: { kind: "icon", icon: "music" },
+    media: { kind: "image", src: melodia, alt: "Melodia home screen showing personal mixes and recently played songs" },
     href: "https://github.com/penyululz/Melodia",
     aiAssisted: true,
   },

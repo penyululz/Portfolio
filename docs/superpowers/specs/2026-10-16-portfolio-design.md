@@ -71,8 +71,8 @@ Every project (featured and self-hosted) carries `aiAssisted: true` and shows an
 
 Featured (carousel order). `media` is a screenshot unless marked *icon*, in which case a large Lucide icon is centred on an emerald/zinc gradient panel.
 
-1. **AssetFlow** · `Windows Desktop App · 2026` · "An offline Windows program for tracking lab equipment: inventory, weekly inspections, issues and work orders, and Excel/PDF reports. A local engine runs Next.js and PostgreSQL 17 on 127.0.0.1 only, with append-only ledgers, history as of any past date, and verified backups. Covered by 420+ unit and server tests and 100+ browser tests with axe." · tags Electron, Next.js, PostgreSQL, Drizzle ORM, Playwright · no public link · media: screenshot `E:\dev\labreport-v3\docs\screenshots\after\dark-1366-01-home.png` (fixture data only)
-2. **Melodia** · `Music Player · Windows & Android` · "An open-source, local-first music player for your own audio library. It plays offline with gapless playback, crossfade and replay gain, keeps playlists and recommendations on the device, and moves libraries between Windows and Android by QR transfer with SHA-256 verification. No account, no cloud." · tags Electron, Next.js, Android, SQLite, GPLv3 · `https://github.com/penyululz/Melodia` · media: *icon* `music` (the repo has no screenshot and its `public/icon.svg` is a template placeholder)
+1. **AssetFlow** · `Windows Desktop App · 2026` · "An offline Windows program for tracking lab equipment: inventory, weekly inspections, issues and work orders, and Excel/PDF reports. A local engine runs Next.js and PostgreSQL 17 on 127.0.0.1 only, with append-only ledgers, history as of any past date, and verified backups. Covered by 420+ unit and server tests and 100+ browser tests with axe." · tags Electron, Next.js, PostgreSQL, Drizzle ORM, Playwright · no public link · media: screenshot of the home screen supplied by the owner (1900×952)
+2. **Melodia** · `Music Player · Windows & Android` · "An open-source, local-first music player for your own audio library. It plays offline with gapless playback, crossfade and replay gain, keeps playlists and recommendations on the device, and moves libraries between Windows and Android by QR transfer with SHA-256 verification. No account, no cloud." · tags Electron, Next.js, Android, SQLite, GPLv3 · `https://github.com/penyululz/Melodia` · media: screenshot of the home screen supplied by the owner (1917×986)
 3. **Facility Management Partner** · `Multi-tenant SaaS` · "A multi-tenant platform for facility teams to manage bookings, maintenance requests, billing and daily operations in one place. I designed the architecture and app flow, built it full-stack on Supabase, and ran A/B tests to improve the UX." · tags React, TypeScript, Supabase, PostgreSQL, Vercel · `https://fmp-experimental-fp.vercel.app`
 4. **WebForge** · `Business Website` · "My web studio's public site, presenting practical websites and web systems for day-to-day business operations, including the TicketPro ticketing product." · tags Astro, Tailwind CSS, Deployment, TicketPro · `https://www.webforge.my`
 5. **TikTok System** · `Coaching Platform · 2023` · "A web-based coaching and account management system built for operational use. I led the project and worked across UI structure and backend connection, shipping a working version for daily workflows." · tags React, Frontend, Backend, Project Lead · no link
@@ -83,6 +83,7 @@ Self-hosted (grid; descriptions are draft copy for the owner to correct):
 8. **Gomail** · `Self-hosted · Mail service` · "A Go-based mail-sending service deployed and configured on my own infrastructure for transactional email." · tags Go, Docker, SMTP
 
 ### 4.4 Skills
+Section intro: `Skills grouped around teaching, hands-on support, deployment work and software development.`
 Marquee row 1: PC Troubleshooting, Hardware Repair, Networking, Technical Support, Teaching, React, TypeScript
 Marquee row 2: Astro, Next.js, Electron, Tailwind CSS, Supabase, PostgreSQL, Docker, Linux
 Cards:
@@ -115,9 +116,20 @@ Cards:
 
 Teaching section chips: `wayground-innovator`, `wayground-game-changer`, `jpk-induction`, `aihq-storytelling`.
 
+### 4.7 Teaching
+Section intro: `I lecture at Tech Terrain College, turning years of hands-on IT and development work into structured lessons, assessments and mentoring.`
+Lecturer roles (newest first) with the shared lecturer highlights under the eyebrow "In the classroom"; the credential chips from §4.6 sit under "Professional development".
+
+### 4.8 Contact
+Section intro: `Open to teaching and training roles, IT and deployment work, and web projects. I focus on clear communication and solutions that work.`
+Cards:
+- **Email me** (eyebrow `Email | Phone | Malaysia`): the email and phone from §4.1 as links.
+- **LinkedIn** (eyebrow `Professional Profile`): "Background, experience and ongoing work across teaching, IT support, development and deployment."
+- **GitHub** (eyebrow `Projects & Code`): "Source for projects like Melodia, plus the systems I build, review and deploy."
+
 ## 5. Design language (carried from the old site)
 
-- **Palette:** zinc neutrals + emerald accent. Page bg light `#ffffff`, dark `#050505`. Accent `#10b981` (emerald-500), `#34d399` (emerald-400, dark-mode text accent), `#059669`/`#047857` (emerald-600/700, accent text on light bg for contrast). Borders zinc-200 / zinc-800. `theme-color` meta tracks the theme.
+- **Palette:** zinc neutrals + emerald accent. Page bg light `#ffffff`, dark `#050505`. Accent `#10b981` (emerald-500), `#34d399` (emerald-400, dark-mode text accent), `#059669`/`#047857` (emerald-600/700, accent text on light bg for contrast). Borders zinc-200 / zinc-800. `theme-color` is a `prefers-color-scheme` light/dark pair; scripts set both to the active theme.
 - **Type:** system sans stack. Display headings: weight 900, uppercase, letter-spacing −0.035em to −0.045em, line-height 0.86–0.98, two-tone (lead in zinc-950/white, accent in emerald), soft text-shadow. Eyebrows: monospace, uppercase, tracking 0.22em, emerald, preceded by a 2px × 48px emerald rule in the hero.
 - **Shapes:** pill buttons and nav (`rounded-full`), cards at 1.5–2rem radius, 1px borders, soft long shadows in light mode, none in dark; frosted panels (`backdrop-blur`, white/82 or black/58).
 - **Signature elements:** pill-shaped grayscale portrait that goes to colour on hover with an emerald overlay; theme-specific looping hero video over gradient scrims; theme-specific textured page background; −2° rotated double marquee of skills with emerald dots; centre-line timeline with emerald scroll-progress fill and glowing nodes; carousel with round prev/next buttons, `01 / 03` counter and title chips; floating accessibility widget (text 90–130 % in 10 % steps, underline links, readable font, reset).
@@ -128,7 +140,8 @@ Teaching section chips: `wayground-innovator`, `wayground-game-changer`, `jpk-in
 - Static output, deployable to Vercel. Site URL `https://farisdanial.space` (from the old `vite.config.ts` allowedHosts; single constant).
 - Light/dark: stored choice, else system preference; applied before first paint.
 - No horizontal scroll at 360px width.
-- WCAG 2.1 AA: axe-core reports zero serious/critical violations in both themes.
+- WCAG 2.1 AA: axe-core reports zero serious/critical violations in both themes. A "Skip to content" link (→ `#main`) is the first focusable element and shows on focus.
+- Without JavaScript, phones (< 1024px) still reach every section: a menu link targets `#mobile-menu` and CSS `:target` shows it.
 - Budgets: built `dist/` ≤ 15 MB total, no single file > 6 MB.
-- Privacy: no string matching a Malaysian IC pattern (`\b\d{6}-?\d{2}-?\d{4}\b`) in source or `dist/`; the only PDF in `dist/` is `resume.pdf`.
+- Privacy: no string matching a Malaysian IC pattern (`\b\d{6}-?\d{2}-?\d{4}\b`) in source or `dist/`, including the extracted text of `dist/resume.pdf`; the only PDF in `dist/` is `resume.pdf`.
 - SEO: title/description/OG/Twitter tags, `Person` JSON-LD, sitemap, robots, manifest, favicons.

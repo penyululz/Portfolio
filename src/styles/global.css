@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant js (html.js &);
 
 :root {
   --app-font-scale: 1;
@@ -12,6 +13,12 @@
     scroll-behavior: smooth;
     font-kerning: normal;
     text-rendering: optimizeLegibility;
+  }
+
+  /* Without JS, the menu link targets #mobile-menu. Same layer as preflight's important [hidden], so specificity wins.
+     Choosing a section link moves :target away, which closes the menu again. */
+  html:not(.js) #mobile-menu:target {
+    display: block !important;
   }
 }
 

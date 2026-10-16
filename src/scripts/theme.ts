@@ -10,7 +10,7 @@ export function setTheme(theme: Theme): void {
   root.classList.toggle("dark", theme === "dark");
   root.dataset.theme = theme;
   root.style.colorScheme = theme;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", SITE.themeColor[theme]);
+  for (const meta of document.querySelectorAll('meta[name="theme-color"]')) meta.setAttribute("content", SITE.themeColor[theme]);
   safeSet(THEME_KEY, theme);
   syncToggles(theme);
   window.dispatchEvent(new CustomEvent<{ theme: Theme }>("themechange", { detail: { theme } }));
