@@ -181,3 +181,62 @@ html.a11y-no-motion *::after {
 html.a11y-no-motion {
   scroll-behavior: auto;
 }
+
+/* Markdown body of a case study page (no typography plugin; mirrors the site's text styles). */
+@layer components {
+  .case-study-prose {
+    color: var(--color-zinc-800);
+    font-size: var(--text-lg);
+    line-height: 1.75;
+    @variant dark {
+      color: var(--color-zinc-300);
+    }
+  }
+  .case-study-prose h3 {
+    margin-top: 2.5rem;
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-zinc-950);
+    @variant sm {
+      font-size: var(--text-2xl);
+    }
+    @variant dark {
+      color: var(--color-white);
+    }
+  }
+  .case-study-prose p,
+  .case-study-prose ul,
+  .case-study-prose ol {
+    margin-top: 1rem;
+  }
+  .case-study-prose ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+  }
+  .case-study-prose ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+  }
+  .case-study-prose li + li {
+    margin-top: 0.5rem;
+  }
+  .case-study-prose strong {
+    font-weight: 600;
+    color: var(--color-zinc-950);
+    @variant dark {
+      color: var(--color-white);
+    }
+  }
+  .case-study-prose a {
+    color: var(--color-emerald-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    @variant dark {
+      color: var(--color-emerald-400);
+    }
+  }
+  .case-study-prose code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+}

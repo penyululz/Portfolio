@@ -1,0 +1,72 @@
+---
+import { ArrowLeft, ArrowUpRight } from "@lucide/astro";
+import AiAssistedPill from "../AiAssistedPill.astro";
+
+interface Props {
+  title: string;
+  summary: string;
+  facts: { label: string; value: string }[];
+  stack: string[];
+  links: { label: string; href: string }[];
+  aiAssisted: boolean;
+}
+
+const { title, summary, facts, stack, links, aiAssisted } = Astro.props;
+---
+
+<header class="flex flex-col items-start gap-6">
+  <a
+    href="/#projects"
+    class="inline-flex items-center gap-2 rounded-full text-sm font-medium text-zinc-700 hover:text-emerald-700 dark:text-zinc-400 dark:hover:text-emerald-400"
+  >
+    <ArrowLeft class="h-4 w-4" aria-hidden="true" />
+    Back to projects
+  </a>
+  <div class="flex flex-wrap items-center gap-3">
+    <p class="eyebrow">Case study</p>
+    {aiAssisted && <AiAssistedPill />}
+  </div>
+  <h1 class="display-title text-[min(2.75rem,11vw)] text-zinc-950 sm:text-[min(4rem,8vw)] md:text-[min(5rem,7vw)] dark:text-white">
+    {title} <span class="text-emerald-700 dark:text-emerald-400">case study</span>
+  </h1>
+  <p class="max-w-3xl text-lg text-zinc-700 sm:text-xl dark:text-zinc-300">{summary}</p>
+
+  <dl class="grid w-full grid-cols-2 gap-x-6 gap-y-4 border-y border-zinc-200 py-5 sm:grid-cols-4 dark:border-zinc-800">
+    {
+      facts.map((fact) => (
+        <div>
+          <dt class="font-mono text-xs tracking-[0.2em] text-zinc-600 uppercase dark:text-zinc-400">{fact.label}</dt>
+          <dd class="mt-1 font-semibold text-zinc-950 dark:text-white">{fact.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+
+  <ul class="flex flex-wrap gap-2" aria-label="Tech stack">
+    {
+      stack.map((item) => (
+        <li class="rounded-full border border-zinc-200 bg-zinc-100/95 px-3 py-1.5 text-xs font-medium text-zinc-900 sm:text-sm dark:border-white/10 dark:bg-white/10 dark:text-white">
+          {item}
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    links.length > 0 && (
+      <div class="flex flex-wrap gap-3">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-black shadow-[0_14px_32px_-18px_rgba(16,185,129,0.85)] transition-transform hover:scale-[1.02]"
+          >
+            {link.label}
+            <ArrowUpRight class="h-4 w-4" aria-hidden="true" />
+          </a>
+        ))}
+      </div>
+    )
+  }
+</header>
