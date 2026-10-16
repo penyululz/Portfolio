@@ -10,7 +10,9 @@ function load(theme: Theme): void {
   const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
   const allowed = shouldPlayVideo({
     width: window.innerWidth,
-    reducedMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    reducedMotion:
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.documentElement.classList.contains("a11y-no-motion"),
     saveData: connection?.saveData === true,
   });
   if (!allowed) {
@@ -32,4 +34,5 @@ function load(theme: Theme): void {
 if (video) {
   load(currentTheme());
   window.addEventListener("themechange", (event) => load((event as CustomEvent<{ theme: Theme }>).detail.theme));
+  window.addEventListener("a11ychange", () => load(currentTheme()));
 }

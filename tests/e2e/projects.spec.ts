@@ -43,6 +43,14 @@ test("arrow keys navigate", async ({ page }) => {
   await expect(counter(page)).toHaveText("01 / 05");
 });
 
+test("arrow keys from a slide link keep focus in the carousel", async ({ page }) => {
+  await page.getByRole("button", { name: "Next project" }).click();
+  await page.getByRole("link", { name: "Open Melodia" }).focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(counter(page)).toHaveText("03 / 05");
+  await expect(page.locator("[data-carousel]")).toBeFocused();
+});
+
 test("swipe navigates", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "mobile", "touch viewport only");
   const slide = page.locator("[data-carousel] [data-slide]").filter({ visible: true });

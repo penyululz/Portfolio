@@ -16,7 +16,13 @@ describe("parseSettings", () => {
       textScale: 1.3,
       linksUnderline: false,
       readableFont: true,
+      pauseMotion: false,
     });
   });
   it("returns defaults for JSON that is not an object", () => expect(parseSettings("42")).toEqual(A11Y_DEFAULTS));
+});
+
+describe("pauseMotion", () => {
+  it("defaults to false", () => expect(parseSettings(null).pauseMotion).toBe(false));
+  it("reads a strict true", () => expect(parseSettings('{"pauseMotion":true}').pauseMotion).toBe(true));
 });

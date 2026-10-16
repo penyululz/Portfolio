@@ -75,3 +75,48 @@ test("widget works when storage throws", async ({ page }) => {
   expect(await fontSize(page)).toBe("17.6px");
   expect(errors).toEqual([]);
 });
+
+test("tab moves from the open toggle into the panel", async ({ page }) => {
+  await page.goto("/");
+  const toggle = page.getByRole("button", { name: "Open accessibility tools" });
+  await toggle.focus();
+  await page.keyboard.press("Enter");
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("button", { name: "Increase text" })).toBeFocused();
+});
+
+test("focus stays in the panel when increase reaches its limit", async ({ page }) => {
+  await page.goto("/");
+  await openWidget(page);
+  await page.getByRole("button", { name: "Increase text" }).focus();
+  for (let i = 0; i < 3; i++) await page.keyboard.press("Enter");
+  await expect(page.locator("[data-a11y-scale]")).toHaveText("130%");
+  await expect(page.getByRole("button", { name: "Decrease text" })).toBeFocused();
+});
+
+test("pause animations stops the marquee and the hero video", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "video plays on desktop only");
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await expect(page.locator("[data-hero-video]")).toHaveAttribute("src", /hero-/);
+  await openWidget(page);
+  const pause = page.getByRole("button", { name: /Pause animations/ });
+  await pause.click();
+  await expect(pause).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("html")).toHaveClass(/\ba11y-no-motion\b/);
+  const animation = await page.locator(".marquee-track").first().evaluate((el) => getComputedStyle(el).animationName);
+  expect(animation).toBe("none");
+  await expect.poll(() => page.locator("[data-hero-video]").evaluate((v) => (v as HTMLVideoElement).paused)).toBe(true);
+  await page.reload();
+  await expect(page.locator("html")).toHaveClass(/\ba11y-no-motion\b/);
+  await expect(page.locator("[data-hero-video]")).not.toHaveAttribute("src", /.+/);
+});
+
+test("respects the browser's default font size", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "one project is enough");
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send("Page.enable");
+  await cdp.send("Page.setFontSizes", { fontSizes: { standard: 20 } });
+  await page.goto("/");
+  expect(await fontSize(page)).toBe("20px");
+});

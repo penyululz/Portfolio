@@ -30,6 +30,22 @@ test("no horizontal scroll at 360", async ({ page }, testInfo) => {
   }
 });
 
+test("no horizontal scroll at 360 with text at 130% and readable font", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "phone viewport only");
+  await page.addInitScript(() =>
+    localStorage.setItem(
+      "portfolio-accessibility-settings",
+      JSON.stringify({ textScale: 1.3, linksUnderline: false, readableFont: true }),
+    ),
+  );
+  await page.goto("/");
+  for (const id of SECTION_IDS) {
+    await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow, `#${id}`).toBeLessThanOrEqual(0);
+  }
+});
+
 test.describe("without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
 

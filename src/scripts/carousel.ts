@@ -11,6 +11,7 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-carousel]")) {
   let active = 0;
 
   const show = (next: number, direction: 1 | -1) => {
+    const focusInSlide = slides.some((slide) => slide.contains(document.activeElement));
     active = wrapIndex(next, slides.length);
     slides.forEach((slide, i) => {
       slide.toggleAttribute("data-active", i === active);
@@ -18,6 +19,8 @@ for (const root of document.querySelectorAll<HTMLElement>("[data-carousel]")) {
     });
     chips.forEach((chip, i) => chip.setAttribute("aria-current", String(i === active)));
     if (counter) counter.textContent = `${pad(active + 1)} / ${pad(slides.length)}`;
+    // A focused link in the outgoing slide is about to be hidden: keep focus on the carousel.
+    if (focusInSlide && !slides[active].contains(document.activeElement)) root.focus();
   };
 
   controls?.querySelector("[data-carousel-prev]")?.addEventListener("click", () => show(active - 1, -1));

@@ -1,7 +1,7 @@
-export type A11ySettings = { textScale: number; linksUnderline: boolean; readableFont: boolean };
+export type A11ySettings = { textScale: number; linksUnderline: boolean; readableFont: boolean; pauseMotion: boolean };
 
 export const A11Y_KEY = "portfolio-accessibility-settings";
-export const A11Y_DEFAULTS: A11ySettings = { textScale: 1, linksUnderline: false, readableFont: false };
+export const A11Y_DEFAULTS: A11ySettings = { textScale: 1, linksUnderline: false, readableFont: false, pauseMotion: false };
 export const MIN_SCALE = 0.9;
 export const MAX_SCALE = 1.3;
 export const SCALE_STEP = 0.1;
@@ -25,5 +25,6 @@ export function parseSettings(raw: string | null): A11ySettings {
     textScale: typeof value.textScale === "number" ? clampScale(value.textScale) : A11Y_DEFAULTS.textScale,
     linksUnderline: value.linksUnderline === true,
     readableFont: value.readableFont === true,
+    pauseMotion: value.pauseMotion === true,
   };
 }

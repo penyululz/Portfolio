@@ -20,6 +20,7 @@ if (toggle && panel) {
   const decrease = q<HTMLButtonElement>("[data-a11y-decrease]");
   const underline = q<HTMLButtonElement>("[data-a11y-underline]");
   const readable = q<HTMLButtonElement>("[data-a11y-readable]");
+  const motion = q<HTMLButtonElement>("[data-a11y-motion]");
   const reset = q<HTMLButtonElement>("[data-a11y-reset]");
 
   let settings: A11ySettings = parseSettings(safeGet(A11Y_KEY));
@@ -27,7 +28,8 @@ if (toggle && panel) {
   const isDefault = (s: A11ySettings) =>
     s.textScale === A11Y_DEFAULTS.textScale &&
     s.linksUnderline === A11Y_DEFAULTS.linksUnderline &&
-    s.readableFont === A11Y_DEFAULTS.readableFont;
+    s.readableFont === A11Y_DEFAULTS.readableFont &&
+    s.pauseMotion === A11Y_DEFAULTS.pauseMotion;
 
   const setPressed = (button: HTMLButtonElement | null, on: boolean) => {
     if (!button) return;
@@ -37,18 +39,25 @@ if (toggle && panel) {
   };
 
   const apply = (next: A11ySettings, persist = true) => {
+    const focused = document.activeElement;
     settings = next;
     const root = document.documentElement;
     root.style.setProperty("--app-font-scale", String(next.textScale));
     root.classList.toggle("a11y-links-underline", next.linksUnderline);
     root.classList.toggle("a11y-readable-font", next.readableFont);
+    root.classList.toggle("a11y-no-motion", next.pauseMotion);
     if (scaleLabel) scaleLabel.textContent = `${Math.round(next.textScale * 100)}%`;
     if (increase) increase.disabled = next.textScale >= MAX_SCALE;
     if (decrease) decrease.disabled = next.textScale <= MIN_SCALE;
     if (reset) reset.disabled = isDefault(next);
     setPressed(underline, next.linksUnderline);
     setPressed(readable, next.readableFont);
+    setPressed(motion, next.pauseMotion);
+    // A button that just became disabled drops keyboard focus: hand it to its counterpart.
+    if (focused === increase && increase?.disabled) decrease?.focus();
+    if (focused === decrease && decrease?.disabled) increase?.focus();
     if (persist) safeSet(A11Y_KEY, JSON.stringify(next));
+    window.dispatchEvent(new CustomEvent<A11ySettings>("a11ychange", { detail: next }));
   };
 
   const setOpen = (open: boolean, restoreFocus = false) => {
@@ -62,6 +71,7 @@ if (toggle && panel) {
   decrease?.addEventListener("click", () => apply({ ...settings, textScale: clampScale(settings.textScale - SCALE_STEP) }));
   underline?.addEventListener("click", () => apply({ ...settings, linksUnderline: !settings.linksUnderline }));
   readable?.addEventListener("click", () => apply({ ...settings, readableFont: !settings.readableFont }));
+  motion?.addEventListener("click", () => apply({ ...settings, pauseMotion: !settings.pauseMotion }));
   reset?.addEventListener("click", () => {
     apply({ ...A11Y_DEFAULTS });
     toggle.focus();
