@@ -18,7 +18,7 @@ export const projects: Project[] = [
     type: "Windows Desktop App · 2026",
     group: "featured",
     summary:
-      "An offline Windows program for tracking lab equipment: inventory, weekly inspections, issues and work orders, and Excel/PDF reports. A local engine runs Next.js and PostgreSQL 17 on 127.0.0.1 only, with append-only ledgers, history as of any past date, and verified backups. Covered by 420+ unit and server tests and 100+ browser tests with axe.",
+      "An offline Windows app for tracking lab equipment, with inventory, weekly inspections, work orders and Excel/PDF reports on a local PostgreSQL engine.",
     tags: ["Electron", "Next.js", "PostgreSQL", "Drizzle ORM", "Playwright"],
     media: { kind: "image", src: assetflow, alt: "AssetFlow home screen showing weekly inspections and recent activity" },
     aiAssisted: true,
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     type: "Music Player · Windows & Android",
     group: "featured",
     summary:
-      "An open-source, local-first music player for your own audio library. It plays offline with gapless playback, crossfade and replay gain, keeps playlists and recommendations on the device, and moves libraries between Windows and Android by QR transfer with SHA-256 verification. No account, no cloud.",
+      "An open-source, offline music player for your own library on Windows and Android, with gapless playback, on-device mixes and QR library transfer.",
     tags: ["Electron", "Next.js", "Android", "SQLite", "GPLv3"],
     media: { kind: "image", src: melodia, alt: "Melodia home screen showing personal mixes and recently played songs" },
     href: "https://github.com/penyululz/Melodia",
@@ -41,7 +41,7 @@ export const projects: Project[] = [
     type: "Multi-tenant SaaS",
     group: "featured",
     summary:
-      "A multi-tenant platform for facility teams to manage bookings, maintenance requests, billing and daily operations in one place. I designed the architecture and app flow, built it full-stack on Supabase, and ran A/B tests to improve the UX.",
+      "A multi-tenant platform for facility teams to handle bookings, maintenance, billing and daily operations. I designed and built it full-stack on Supabase.",
     tags: ["React", "TypeScript", "Supabase", "PostgreSQL", "Vercel"],
     media: { kind: "image", src: fmp, alt: "Facility Management Partner dashboard preview" },
     href: "https://fmp-experimental-fp.vercel.app",
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     type: "Business Website",
     group: "featured",
     summary:
-      "My web studio's public site, presenting practical websites and web systems for day-to-day business operations, including the TicketPro ticketing product.",
+      "My web studio's site, presenting practical websites and business systems, including the TicketPro ticketing product.",
     tags: ["Astro", "Tailwind CSS", "Deployment", "TicketPro"],
     media: { kind: "image", src: webforge, alt: "WebForge website preview" },
     href: "https://www.webforge.my",
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     type: "Coaching Platform · 2023",
     group: "featured",
     summary:
-      "A web-based coaching and account management system built for operational use. I led the project and worked across UI structure and backend connection, shipping a working version for daily workflows.",
+      "A coaching and account management system for daily operations. I led the project and built across the UI and backend.",
     tags: ["React", "Frontend", "Backend", "Project Lead"],
     media: { kind: "image", src: tiktok, alt: "TikTok System project preview" },
     aiAssisted: true,
