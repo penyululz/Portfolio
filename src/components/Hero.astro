@@ -1,0 +1,107 @@
+---
+import { Image } from "astro:assets";
+import { ArrowDownRight, Download } from "@lucide/astro";
+import portrait from "../assets/portrait.jpg";
+import { profile } from "../data/profile";
+
+// Hero scrims carried over from the old portfolio's Hero.tsx.
+const lightScrim =
+  "linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.58)), radial-gradient(circle at 18% 16%, rgba(5,150,105,0.08), transparent 24%), radial-gradient(circle at 82% 18%, rgba(24,24,27,0.03), transparent 18%)";
+const darkScrim =
+  "linear-gradient(180deg, rgba(5,5,5,0.56), rgba(5,5,5,0.7)), radial-gradient(circle at 18% 16%, rgba(16,185,129,0.12), transparent 26%), radial-gradient(circle at 82% 18%, rgba(255,255,255,0.05), transparent 20%)";
+
+const delay = (ms: number) => `transition-delay: ${ms}ms`;
+---
+
+<section
+  id="home"
+  class="relative flex min-h-[100svh] w-full items-start justify-center overflow-hidden pt-28 pb-12 sm:items-center sm:pt-32 sm:pb-16 lg:pb-20"
+>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0">
+    <video data-hero-video muted loop playsinline preload="none" class="h-full w-full object-cover"></video>
+  </div>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 dark:hidden" style={`background: ${lightScrim}`}></div>
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 hidden dark:block" style={`background: ${darkScrim}`}></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6">
+    <div class="grid items-center gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-8">
+      <div class="lg:col-span-8">
+        <div class="mb-3 flex items-center gap-3 sm:gap-4" data-reveal style={delay(0)}>
+          <span aria-hidden="true" class="h-[2px] w-10 shrink-0 bg-emerald-500 sm:w-12"></span>
+          <p class="eyebrow">{profile.eyebrow}</p>
+        </div>
+
+        <h1
+          class="display-title text-[16vw] leading-[0.86] tracking-[-0.045em] sm:text-[12vw] lg:text-[7vw]"
+          data-reveal
+          style={delay(100)}
+        >
+          <span class="block text-zinc-900 dark:text-zinc-100">FARIS</span>
+          <span class="block text-emerald-700 dark:text-emerald-400">DANIAL</span>
+        </h1>
+
+        <p
+          class="mt-6 max-w-xl text-base leading-relaxed font-light text-zinc-700 sm:mt-8 sm:text-lg md:text-xl dark:text-zinc-300"
+          data-reveal
+          style={delay(200)}
+        >
+          {profile.tagline}
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4 sm:mt-12 sm:gap-6" data-reveal style={delay(300)}>
+          <a
+            href="#projects"
+            class="group relative flex items-center gap-3 overflow-hidden rounded-full bg-zinc-900 px-6 py-3.5 text-sm font-bold text-white transition-transform duration-200 hover:scale-[1.02] sm:px-8 sm:py-4 sm:text-base dark:bg-white dark:text-black"
+          >
+            <span
+              aria-hidden="true"
+              class="absolute inset-0 translate-y-full bg-emerald-400 transition-transform duration-200 ease-out group-hover:translate-y-0 motion-reduce:transition-none"
+            ></span>
+            <span class="relative z-10 group-hover:text-black">View Projects</span>
+            <ArrowDownRight
+              class="relative z-10 h-5 w-5 transition-transform duration-200 group-hover:-rotate-45 group-hover:text-black"
+              aria-hidden="true"
+            />
+          </a>
+          <a
+            href={profile.resume.href}
+            download={profile.resume.downloadName}
+            class="flex items-center gap-3 rounded-full border border-zinc-300 bg-white/85 px-6 py-3.5 text-sm font-semibold text-zinc-900 shadow-[0_16px_34px_-24px_rgba(24,24,27,0.45)] backdrop-blur-md transition-transform duration-200 hover:scale-[1.02] sm:px-8 sm:py-4 sm:text-base dark:border-zinc-700 dark:bg-zinc-950/70 dark:text-white"
+          >
+            <Download class="h-5 w-5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+            <span>Download Resume</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center lg:col-span-4" data-reveal style={delay(150)}>
+        <div
+          class="relative aspect-[3/4] w-full max-w-[12rem] overflow-hidden rounded-full border border-zinc-200 grayscale transition-[filter] duration-300 hover:grayscale-0 sm:max-w-[15rem] lg:max-w-[26rem] dark:border-zinc-800/60"
+        >
+          <span aria-hidden="true" class="absolute inset-0 z-10 bg-emerald-500/10 mix-blend-overlay"></span>
+          <Image
+            src={portrait}
+            alt="Portrait of Mohamad Faris Danial"
+            widths={[384, 768]}
+            sizes="(min-width: 1024px) 26rem, (min-width: 640px) 15rem, 12rem"
+            loading="eager"
+            fetchpriority="high"
+            class="h-full w-full scale-110 object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    aria-hidden="true"
+    class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-zinc-600 motion-safe:animate-bounce sm:flex dark:text-zinc-500"
+  >
+    <span class="font-mono text-[10px] tracking-widest uppercase">Scroll</span>
+    <span class="h-12 w-px bg-gradient-to-b from-zinc-500 to-transparent"></span>
+  </div>
+</section>
+
+<script>
+  import "../scripts/hero-video";
+</script>

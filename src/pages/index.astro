@@ -4,18 +4,16 @@ import PageBackground from "../components/PageBackground.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import SectionHeading from "../components/SectionHeading.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
 ---
 
 <BaseLayout>
   <PageBackground />
   <Navbar />
   <main id="main" class="relative z-10">
-    <section id="home" class="section min-h-[100svh] pt-32">
-      <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="FARIS" accent="DANIAL" size="xl" stacked /></div>
-    </section>
-    <section id="about" class="section">
-      <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="ABOUT" accent="ME" size="xl" stacked /></div>
-    </section>
+    <Hero />
+    <About />
     <section id="teaching" class="section">
       <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="TEACHING" accent="& TRAINING" size="xl" stacked /></div>
     </section>
