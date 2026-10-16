@@ -9,6 +9,8 @@
 
 @layer base {
   html {
+    /* Safari ignores overflow on body alone; clipping here stops sideways scroll and zoom-out on phones. */
+    overflow-x: clip;
     font-size: calc(100% * var(--app-font-scale));
     scroll-behavior: smooth;
     font-kerning: normal;

@@ -90,10 +90,10 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
     <div class="mt-16 sm:mt-20" data-self-hosted>
       <h3 class="eyebrow mb-6">Self-hosted</h3>
-      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {
           selfHosted.map((project) => (
-            <li>
+            <li class="min-w-0">
               <ProjectCard project={project} />
             </li>
           ))
