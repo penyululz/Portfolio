@@ -17,7 +17,7 @@ const { media } = project;
 >
   {
     media.kind === "image" && (
-      <div class="aspect-[5/2] bg-white p-3 lg:aspect-video lg:p-4">
+      <div class="h-20 bg-white p-3 sm:h-24 lg:aspect-video lg:h-auto lg:p-4">
         <Image src={media.src} alt={media.alt} widths={[480, 800]} sizes="(min-width: 1024px) 24rem, (min-width: 640px) 50vw, 100vw" class="h-full w-full object-contain" />
       </div>
     )
