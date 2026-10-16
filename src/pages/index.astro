@@ -6,7 +6,9 @@ import Footer from "../components/Footer.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
+import Teaching from "../components/Teaching.astro";
 import Projects from "../components/Projects.astro";
+import Credentials from "../components/Credentials.astro";
 import Skills from "../components/Skills.astro";
 import Experience from "../components/Experience.astro";
 ---
@@ -17,15 +19,11 @@ import Experience from "../components/Experience.astro";
   <main id="main" class="relative z-10">
     <Hero />
     <About />
-    <section id="teaching" class="section">
-      <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="TEACHING" accent="& TRAINING" size="xl" stacked /></div>
-    </section>
+    <Teaching />
     <Projects />
     <Skills />
     <Experience />
-    <section id="credentials" class="section">
-      <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="CERTIFICATIONS" accent="& EDUCATION" /></div>
-    </section>
+    <Credentials />
     <section id="contact" class="section">
       <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="CONTACT" accent="ME" stacked /></div>
     </section>

@@ -1,0 +1,72 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import CredentialCard from "./CredentialCard.astro";
+import { LECTURER_HIGHLIGHTS, roles } from "../data/experience";
+import { credentials, teachingCredentialIds } from "../data/credentials";
+import { formatPeriod, sortRolesByStartDesc } from "../lib/period";
+import type { Credential } from "../data/types";
+
+const lecturerRoles = sortRolesByStartDesc(roles.filter((r) => r.kind === "teaching"));
+const chips = teachingCredentialIds
+  .map((id) => credentials.find((c) => c.id === id))
+  .filter((c): c is Credential => c !== undefined);
+---
+
+<section id="teaching" class="section">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5">
+        <SectionHeading
+          lead="TEACHING"
+          accent="& TRAINING"
+          size="xl"
+          stacked
+          copy="I lecture at Tech Terrain College, turning years of hands-on IT and development work into structured lessons, assessments and mentoring."
+        />
+      </div>
+
+      <div class="grid gap-8 sm:grid-cols-2 lg:col-span-7" data-reveal>
+        <ul class="space-y-6">
+          {
+            lecturerRoles.map((role) => (
+              <li data-teaching-role class="border-l-2 border-emerald-500 pl-5">
+                <span class="inline-block rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 font-mono text-xs font-bold tracking-widest text-emerald-800 uppercase dark:text-emerald-400">
+                  {formatPeriod(role.period)}
+                </span>
+                <h3 class="mt-3 text-2xl font-bold tracking-tight text-zinc-950 dark:text-white">{role.title}</h3>
+                <p class="mt-1 text-zinc-700 dark:text-zinc-400">{role.org}</p>
+              </li>
+            ))
+          }
+        </ul>
+
+        <div>
+          <p class="eyebrow mb-4">In the classroom</p>
+          <ul class="space-y-3 text-zinc-800 dark:text-zinc-300">
+            {
+              LECTURER_HIGHLIGHTS.map((item) => (
+                <li class="flex items-start gap-3">
+                  <span aria-hidden="true" class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 sm:mt-16" data-reveal>
+      <p class="eyebrow mb-4">Professional development</p>
+      <ul class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {
+          chips.map((c) => (
+            <li>
+              <CredentialCard credential={c} compact />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
