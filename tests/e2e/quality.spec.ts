@@ -3,11 +3,15 @@ import { expect, test } from "@playwright/test";
 
 const SECTION_IDS = ["home", "about", "teaching", "projects", "skills", "experience", "credentials", "contact"];
 
-for (const colorScheme of ["light", "dark"] as const) {
-  test(`no serious axe violations (${colorScheme})`, async ({ page }, testInfo) => {
+const AXE_CASES = ["/", "/projects/assetflow"].flatMap((path) =>
+  (["light", "dark"] as const).map((colorScheme) => ({ path, colorScheme })),
+);
+
+for (const { path, colorScheme } of AXE_CASES) {
+  test(`no serious axe violations on ${path} (${colorScheme})`, async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== "desktop", "desktop only");
     await page.emulateMedia({ colorScheme, reducedMotion: "reduce" });
-    await page.goto("/");
+    await page.goto(path);
     // The skills marquee is aria-hidden decoration (low-contrast watermark text), exempt under WCAG 1.4.3.
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])

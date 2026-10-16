@@ -25,3 +25,19 @@ test("navbar on a case study page returns to home sections", async ({ page }, te
   await expect(page).toHaveURL(/\/#projects$/);
   await expect(page.locator("#projects")).toBeInViewport();
 });
+
+test("case study has no horizontal scroll at 360", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "phone only");
+  for (const slug of ["assetflow", "melodia"]) {
+    await page.goto(`/projects/${slug}`);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow, slug).toBeLessThanOrEqual(0);
+  }
+});
+
+test("case study without screenshots shows no empty screens section", async ({ page }) => {
+  // Melodia has a hero but no `screens` yet: the heading shows once, with exactly one figure.
+  await page.goto("/projects/melodia");
+  await expect(page.getByRole("heading", { name: "Screens" })).toHaveCount(1);
+  await expect(page.locator("[data-screens] figure")).toHaveCount(1);
+});
