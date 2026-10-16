@@ -1,0 +1,29 @@
+---
+import { getImage } from "astro:assets";
+import bgLight from "../assets/bg-light.jpg";
+import bgDark from "../assets/bg-dark.jpg";
+
+const [light, dark] = await Promise.all([
+  getImage({ src: bgLight, width: 1920, format: "webp", quality: 70 }),
+  getImage({ src: bgDark, width: 1920, format: "webp", quality: 70 }),
+]);
+
+// Scrims carried over from the old portfolio's App.tsx.
+const lightScrim =
+  "linear-gradient(180deg, rgba(255,255,255,0.58), rgba(255,255,255,0.76)), radial-gradient(circle at 14% 14%, rgba(16,185,129,0.08), transparent 22%), radial-gradient(circle at 82% 20%, rgba(24,24,27,0.04), transparent 16%)";
+const darkScrim =
+  "linear-gradient(180deg, rgba(3,3,3,0.42), rgba(3,3,3,0.68)), radial-gradient(circle at 16% 12%, rgba(16,185,129,0.1), transparent 24%), radial-gradient(circle at 84% 18%, rgba(255,255,255,0.06), transparent 18%)";
+---
+
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 z-0">
+  <div
+    class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-95 dark:hidden"
+    style={`background-image: ${lightScrim}, url("${light.src}")`}
+  >
+  </div>
+  <div
+    class="absolute inset-0 hidden bg-cover bg-center bg-no-repeat opacity-90 dark:block"
+    style={`background-image: ${darkScrim}, url("${dark.src}")`}
+  >
+  </div>
+</div>

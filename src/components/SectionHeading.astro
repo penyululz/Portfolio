@@ -1,0 +1,28 @@
+---
+interface Props {
+  lead: string;
+  accent: string;
+  as?: "h2";
+  size?: "xl" | "lg";
+  copy?: string;
+  eyebrow?: string;
+  stacked?: boolean;
+  class?: string;
+}
+
+const { lead, accent, as: Tag = "h2", size = "lg", copy, eyebrow, stacked = false, class: className } = Astro.props;
+
+const sizeClass = {
+  xl: "text-[13vw] sm:text-[10vw] lg:text-[6vw]",
+  lg: "text-4xl sm:text-5xl md:text-6xl",
+}[size];
+---
+
+<div class:list={["flex flex-col items-start gap-4", className]} data-reveal>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <Tag class:list={["display-title text-zinc-950 dark:text-white", sizeClass]}>
+    {lead}{stacked ? <br /> : " "}<span class="text-emerald-700 dark:text-emerald-400">{accent}</span>
+  </Tag>
+  {stacked && <span aria-hidden="true" class="h-2 w-16 rounded-full bg-emerald-500 sm:w-20"></span>}
+  {copy && <p class="max-w-2xl text-base text-zinc-700 sm:text-lg md:text-xl dark:text-zinc-400">{copy}</p>}
+</div>

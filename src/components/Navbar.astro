@@ -1,0 +1,108 @@
+---
+import { Download, Menu, Moon, Sun, X } from "@lucide/astro";
+import { profile } from "../data/profile";
+
+const navItems = [
+  { label: "About", href: "#about" },
+  { label: "Teaching", href: "#teaching" },
+  { label: "Projects", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Experience", href: "#experience" },
+  { label: "Credentials", href: "#credentials" },
+  { label: "Contact", href: "#contact" },
+];
+
+const roundButton =
+  "flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 bg-white/95 text-zinc-700 shadow-[0_10px_30px_-22px_rgba(24,24,27,0.24)] transition-colors hover:border-emerald-600 hover:text-emerald-700 dark:border-zinc-800 dark:bg-zinc-950/90 dark:text-zinc-300 dark:shadow-none dark:hover:text-emerald-400";
+---
+
+<header class="fixed inset-x-0 top-0 z-50 pt-4">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-6">
+    <a href="#home" class="flex items-center rounded-full p-1 transition-transform hover:scale-[1.02]">
+      <img src="/brand/logo-light-compact.svg" alt="Faris Danial, home" class="h-8 w-auto sm:h-9 dark:hidden" width="36" height="36" />
+      <img src="/brand/logo-dark-compact.svg" alt="Faris Danial, home" class="hidden h-8 w-auto sm:h-9 dark:block" width="36" height="36" />
+    </a>
+
+    <div class="hidden items-center gap-3 lg:flex">
+      <nav
+        aria-label="Primary"
+        class="flex items-center gap-1 rounded-full border border-zinc-200 bg-white/95 p-2 shadow-[0_10px_30px_-22px_rgba(24,24,27,0.24)] dark:border-zinc-800 dark:bg-zinc-950/90 dark:shadow-none"
+      >
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-full px-3 py-2 text-sm text-zinc-700 transition-colors hover:bg-zinc-100 hover:text-zinc-950 xl:px-4 dark:text-zinc-400 dark:hover:bg-zinc-900 dark:hover:text-zinc-100"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <a
+        href={profile.resume.href}
+        download={profile.resume.downloadName}
+        class="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-black shadow-[0_14px_32px_-18px_rgba(16,185,129,0.85)] transition-transform hover:scale-[1.02]"
+      >
+        <Download class="h-4 w-4" aria-hidden="true" />
+        Download Resume
+      </a>
+
+      <button type="button" data-theme-toggle hidden aria-label="Toggle theme" class={roundButton}>
+        <Moon class="h-5 w-5 dark:hidden" aria-hidden="true" />
+        <Sun class="hidden h-5 w-5 dark:block" aria-hidden="true" />
+      </button>
+    </div>
+
+    <div class="flex items-center gap-2 lg:hidden">
+      <button type="button" data-theme-toggle hidden aria-label="Toggle theme" class={roundButton}>
+        <Moon class="h-5 w-5 dark:hidden" aria-hidden="true" />
+        <Sun class="hidden h-5 w-5 dark:block" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        hidden
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+        class={roundButton}
+      >
+        <Menu class="h-5 w-5" aria-hidden="true" data-icon-open />
+        <X class="hidden h-5 w-5" aria-hidden="true" data-icon-close />
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" hidden class="px-4 pt-3 lg:hidden">
+    <div
+      class="mx-auto max-w-7xl rounded-[1.75rem] border border-zinc-200 bg-white/98 p-3 shadow-[0_16px_44px_-28px_rgba(24,24,27,0.28)] dark:border-zinc-800 dark:bg-zinc-950/96 dark:shadow-none"
+    >
+      <a
+        href={profile.resume.href}
+        download={profile.resume.downloadName}
+        class="mb-2 flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-black"
+      >
+        <Download class="h-4 w-4" aria-hidden="true" />
+        Download Resume
+      </a>
+      <nav aria-label="Mobile" class="grid gap-2 sm:grid-cols-2">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="rounded-2xl border border-transparent px-4 py-3 text-sm font-medium text-zinc-700 transition-colors hover:border-zinc-200 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:border-zinc-800 dark:hover:bg-zinc-900 dark:hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script>
+  import "../scripts/theme";
+  import "../scripts/nav";
+</script>
