@@ -1,0 +1,98 @@
+---
+import { ArrowUpRight, Mail } from "@lucide/astro";
+import BrandIcon from "./BrandIcon.astro";
+import SectionHeading from "./SectionHeading.astro";
+import { profile } from "../data/profile";
+
+const tel = `tel:${profile.phone.replace(/\s+/g, "")}`;
+const card =
+  "group flex min-h-[8.5rem] flex-col justify-between rounded-[1.25rem] border border-zinc-200 bg-white p-4 transition-transform duration-200 hover:-translate-y-1 hover:border-emerald-500/40 sm:min-h-[9.5rem] sm:rounded-[1.5rem] sm:p-5 dark:border-zinc-800 dark:bg-zinc-900/70 dark:hover:border-emerald-500/30";
+const iconTile =
+  "flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-700 sm:h-12 sm:w-12 dark:text-emerald-400";
+const arrow =
+  "h-5 w-5 text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-emerald-700 dark:text-zinc-400 dark:group-hover:text-emerald-400";
+const eyebrow = "font-mono text-xs tracking-[0.24em] text-zinc-600 uppercase dark:text-zinc-400";
+const title = "mt-2 text-xl font-black tracking-tight text-zinc-950 sm:text-2xl dark:text-white";
+const body = "mt-2 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400";
+
+const external = [
+  {
+    label: "LinkedIn",
+    href: profile.links.linkedin,
+    icon: "linkedin" as const,
+    eyebrow: "Professional Profile",
+    description: "Background, experience and ongoing work across teaching, IT support, development and deployment.",
+  },
+  {
+    label: "GitHub",
+    href: profile.links.github,
+    icon: "github" as const,
+    eyebrow: "Projects & Code",
+    description: "Source for projects like Melodia, plus the systems I build, review and deploy.",
+  },
+];
+---
+
+<section id="contact" class="section">
+  <div class="mx-auto max-w-6xl px-6">
+    <div
+      class="overflow-hidden rounded-[1.5rem] border border-zinc-200 bg-zinc-50/85 shadow-[0_20px_50px_-34px_rgba(24,24,27,0.2)] sm:rounded-[2rem] dark:border-zinc-800 dark:bg-zinc-950/85 dark:shadow-none"
+      data-reveal
+    >
+      <div class="grid gap-6 p-5 sm:gap-8 sm:p-7 md:p-8 xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] xl:items-center xl:gap-10 xl:p-10">
+        <div class="flex flex-col items-start gap-4">
+          <span class="inline-flex rounded-full border border-emerald-500/25 bg-emerald-500/10 px-3 py-1.5 font-mono text-[10px] tracking-[0.24em] text-emerald-800 uppercase sm:px-4 sm:py-2 sm:text-[11px] dark:text-emerald-400">
+            Contact
+          </span>
+          <SectionHeading
+            lead="CONTACT"
+            accent="ME"
+            stacked
+            copy="Open to teaching and training roles, IT and deployment work, and web projects. I focus on clear communication and solutions that work."
+          />
+        </div>
+
+        <ul class="grid gap-3 md:grid-cols-2">
+          <li class="md:col-span-2">
+            <div class={card}>
+              <div class="flex items-start justify-between gap-4">
+                <span class={iconTile}><Mail class="h-5 w-5" aria-hidden="true" /></span>
+                <ArrowUpRight class={arrow} aria-hidden="true" />
+              </div>
+              <div class="mt-4 sm:mt-5">
+                <p class={eyebrow}>Email | Phone | {profile.location}</p>
+                <h3 class={title}>
+                  <a href={`mailto:${profile.email}`} class="hover:text-emerald-700 dark:hover:text-emerald-400">Email me</a>
+                </h3>
+                <p class={body}>
+                  <a href={`mailto:${profile.email}`} class="underline-offset-4 hover:underline">{profile.email}</a>
+                  <span aria-hidden="true"> · </span>
+                  <a href={tel} class="underline-offset-4 hover:underline">{profile.phone}</a>
+                </p>
+              </div>
+            </div>
+          </li>
+          {
+            external.map((item) => (
+              <li>
+                <a href={item.href} target="_blank" rel="noopener noreferrer" class={card}>
+                  <div class="flex items-start justify-between gap-4">
+                    <span class={iconTile}>
+                      <BrandIcon name={item.icon} />
+                    </span>
+                    <ArrowUpRight class={arrow} aria-hidden="true" />
+                  </div>
+                  <div class="mt-4 sm:mt-5">
+                    <p class={eyebrow}>{item.eyebrow}</p>
+                    <h3 class={title}>{item.label}</h3>
+                    <p class={body}>{item.description}</p>
+                  </div>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

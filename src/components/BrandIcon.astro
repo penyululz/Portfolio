@@ -1,0 +1,18 @@
+---
+import github from "bootstrap-icons/icons/github.svg?raw";
+import linkedin from "bootstrap-icons/icons/linkedin.svg?raw";
+
+interface Props {
+  name: "github" | "linkedin";
+  class?: string;
+}
+
+const { name, class: className = "h-5 w-5" } = Astro.props;
+const svg = { github, linkedin }[name]
+  .replace(/\swidth="16"/, "")
+  .replace(/\sheight="16"/, "")
+  .replace(/\sclass="[^"]*"/, "")
+  .replace("<svg", `<svg class="${className}" aria-hidden="true" focusable="false"`);
+---
+
+<Fragment set:html={svg} />

@@ -146,3 +146,19 @@
     animation: marquee-right 45s linear infinite;
   }
 }
+
+/* Accessibility widget preferences */
+html.a11y-links-underline a {
+  text-decoration-line: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1.5px;
+}
+
+html.a11y-readable-font body,
+html.a11y-readable-font button,
+html.a11y-readable-font input,
+html.a11y-readable-font textarea,
+html.a11y-readable-font select {
+  font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  letter-spacing: 0.01em;
+}

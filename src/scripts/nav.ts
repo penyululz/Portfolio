@@ -13,7 +13,7 @@ if (toggle && menu) {
   };
 
   toggle.hidden = false;
-  toggle.addEventListener("click", () => setOpen(menu.hidden));
+  toggle.addEventListener("click", () => setOpen(Boolean(menu.hidden)));
   menu.addEventListener("click", (event) => {
     if ((event.target as HTMLElement).closest("a")) setOpen(false);
   });
