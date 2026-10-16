@@ -3,7 +3,7 @@
 const box = "fill-white stroke-zinc-300 dark:fill-zinc-900 dark:stroke-zinc-700";
 const accentBox = "fill-emerald-50 stroke-emerald-500 dark:fill-emerald-950/60 dark:stroke-emerald-500";
 const title = "fill-zinc-950 text-[14px] font-bold dark:fill-white";
-const note = "fill-zinc-600 text-[12px] dark:fill-zinc-400";
+const note = "fill-zinc-600 text-[13px] dark:fill-zinc-400";
 const line = "stroke-zinc-400 dark:stroke-zinc-500";
 ---
 
@@ -22,7 +22,7 @@ const line = "stroke-zinc-400 dark:stroke-zinc-500";
     </defs>
 
     <rect x="4" y="4" width="352" height="292" rx="14" fill="none" stroke-dasharray="5 4" class={line}></rect>
-    <text x="16" y="24" class={note}>One Windows computer · nothing on the network</text>
+    <text x="16" y="24" class={note}>One Windows computer · local workspace</text>
 
     <rect x="60" y="36" width="240" height="52" rx="10" class={box}></rect>
     <text x="180" y="58" text-anchor="middle" class={title}>AssetFlow window</text>
@@ -64,6 +64,6 @@ const line = "stroke-zinc-400 dark:stroke-zinc-500";
     <text x="265" y="367" text-anchor="middle" class={note}>SHA-256 checksums</text>
   </svg>
   <figcaption class="mt-3 text-sm text-zinc-700 dark:text-zinc-400">
-    The window starts a private engine; everything runs on one computer and talks only to itself.
+    The window starts a private engine. The local workspace runs on one computer and talks only to itself; reports and backups are files you hand on or keep.
   </figcaption>
 </figure>

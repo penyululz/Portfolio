@@ -14,7 +14,7 @@ for (const [slug, title] of [
 
 test("carousel slide opens its case study", async ({ page }) => {
   await page.goto("/");
-  await page.locator("#projects").getByRole("link", { name: "Read the AssetFlow case study" }).click();
+  await page.locator("#projects").getByRole("link", { name: "Read case study for AssetFlow" }).click();
   await expect(page).toHaveURL(/\/projects\/assetflow$/);
 });
 

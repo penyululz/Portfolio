@@ -89,10 +89,9 @@ const { media } = project;
       caseStudyHref && (
         <a
           href={caseStudyHref}
-          aria-label={`Read the ${project.title} case study`}
           class="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_14px_32px_-18px_rgba(16,185,129,0.85)] transition-transform hover:scale-[1.02] sm:mt-6"
         >
-          Read case study
+          Read case study<span class="sr-only"> for {project.title}</span>
           <ArrowRight class="h-4 w-4" aria-hidden="true" />
         </a>
       )

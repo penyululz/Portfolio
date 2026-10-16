@@ -11,8 +11,8 @@ facts:
 stack: [Electron, Next.js, React, PostgreSQL 17, Drizzle ORM, Zod, ExcelJS, Playwright]
 inShort:
   - Labs need to know what equipment they have, what condition it is in, what was checked this week and what is broken. The previous tool, LabReport 2.6, had known failures. A save could be lost while the connection was struggling, and a retry could record the same change twice.
-  - AssetFlow replaces it with a Windows program that runs entirely on one computer, with no Internet, server or password. It covers inventory, weekly inspections with a checklist and review, issues and work orders, and reports in Excel and PDF. Staff can also fill in a workbook away from the computer and import it back.
-  - It ships as a single installer, version 3.1.1. More than 420 server and unit tests and 100 browser tests pass against a real PostgreSQL 17 database. One rule runs through all of it. Unknown is never shown as healthy, so an item nobody checked is reported as not checked, not as working.
+  - AssetFlow replaces it with a Windows program whose workspace runs entirely on one computer, with no Internet, server or password. It covers inventory, weekly inspections with a checklist and review, issues and work orders, and reports in Excel and PDF. Staff can also fill in a workbook away from the computer and import it back.
+  - It ships as a single installer, version 3.1.1. More than 420 server and unit tests and more than 100 browser tests pass against a real PostgreSQL 17 database. One rule runs through all of it. Unknown is never shown as healthy, so an item nobody checked is reported as not checked, not as working.
 hero:
   src: ../../assets/projects/assetflow.png
   alt: AssetFlow home screen showing weekly inspections and recent activity
@@ -26,7 +26,7 @@ On every start the engine clears anything an interrupted run left behind, applie
 
 ### Key decisions and trade-offs
 
-- **An offline desktop program over a hosted web app.** Labs should not need an IT administrator, a server or a network to keep their records. The cost is one computer, one set of records. Records move between computers by backup or by Excel workbook.
+- **An offline desktop program over a hosted web app.** Keeping records should not need a server, a network or anyone to run them. Windows asks for an administrator once, at install, and never again. The cost is one computer, one set of records. Records move between computers by backup or by Excel workbook.
 - **One way to write.** Every change goes through a single endpoint, with an action name and a request identity. A repeated request returns the first result, so a retry never does the work twice. That one rule designs out LabReport 2.6's duplicate-save failure. The cost is that every new feature needs its own action handler.
 - **Nothing is overwritten silently.** Rows carry a version, and a save against an older version is refused with a message. Stock movements, events and the audit trail are append-only, enforced by database triggers. Any report can be shown as it was on a past date. This costs more storage and more careful queries.
 - **Native HTML controls over a component library.** Every button has an explicit type, and a script fails the build if a form is missing one. This removes a class of "the button did nothing" bugs, at the cost of more styling work.
@@ -34,15 +34,16 @@ On every start the engine clears anything an interrupted run left behind, applie
 
 ### Testing and quality
 
-- More than 420 server and unit tests and 100 browser tests, with automated accessibility checks (axe), run against a real PostgreSQL 17 database.
+- More than 420 server and unit tests and more than 100 browser tests, with automated accessibility checks (axe), run against a real PostgreSQL 17 database.
 - The tests connect as the same restricted database role the application uses, so a test cannot pass because it had more access than the real program.
 - Each known LabReport 2.6 failure has a test that reproduces it. For example, a connection reset straight after a save, or a background refresh failing while the user saves.
 - The engine's set-up, start, stop, backup and restore are tested for real in a throwaway folder, including from the packaged program.
-- Each round of work ends with recorded evidence. Code audits are tracked as numbered findings (R01 to R12, N01 to N09) until each one is fixed or ruled on.
+- Each round of work ends with recorded evidence. Code audits are tracked as numbered findings, such as R01 to R12 and N01 to N09, each with its fix and the commit that made it.
 
 ### Security and privacy
 
 - Nothing listens on the network. The window cancels every request that is not to the computer itself, and there is no telemetry, update check or font loaded from outside.
+- An optional team workspace for support tickets is the one exception. Once linked, only the engine talks to that one address, over HTTPS, and its records are kept apart from the local inventory.
 - Database passwords are generated at first start, stored encrypted by Windows (DPAPI) and never shown. The application runs as a database role that cannot change the schema.
 - Excel workbooks are read in a separate worker with limits on size, rows and compression, so a hostile file cannot exhaust the computer.
 - Backups carry a manifest of SHA-256 checksums. A restore goes through a staging database, so a failed restore leaves nothing half-done.
