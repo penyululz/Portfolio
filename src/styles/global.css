@@ -83,3 +83,32 @@
     transition: none;
   }
 }
+
+/* Carousel: without JS every slide shows in a stack; with JS only the active one. */
+[data-carousel].is-carousel [data-slide]:not([data-active]) {
+  display: none;
+}
+
+@keyframes slide-in-next {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+}
+
+@keyframes slide-in-prev {
+  from {
+    opacity: 0;
+    transform: translateX(-48px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-carousel].is-carousel [data-slide][data-active][data-dir="1"] {
+    animation: slide-in-next 0.38s ease-out;
+  }
+
+  [data-carousel].is-carousel [data-slide][data-active][data-dir="-1"] {
+    animation: slide-in-prev 0.38s ease-out;
+  }
+}

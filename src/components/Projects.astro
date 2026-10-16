@@ -1,0 +1,98 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import SectionHeading from "./SectionHeading.astro";
+import ProjectSlide from "./ProjectSlide.astro";
+import ProjectCard from "./ProjectCard.astro";
+import { projects, projectsIntro } from "../data/projects";
+
+const featured = projects.filter((p) => p.group === "featured");
+const selfHosted = projects.filter((p) => p.group === "self-hosted");
+const total = featured.length;
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<section id="projects" class="section">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid gap-8 lg:gap-10 xl:grid-cols-[minmax(0,21rem)_1fr] xl:items-center">
+      <div class="max-w-sm">
+        <SectionHeading lead="SELECTED" accent="PROJECTS" stacked copy={projectsIntro} />
+
+        <div data-carousel-controls="featured-projects" hidden>
+          <div class="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4">
+            <button
+              type="button"
+              data-carousel-prev
+              aria-label="Previous project"
+              aria-controls="featured-projects"
+              class="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:border-emerald-600 hover:text-emerald-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:text-emerald-400"
+            >
+              <ArrowLeft class="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              data-carousel-next
+              aria-label="Next project"
+              aria-controls="featured-projects"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-black transition-transform hover:scale-105"
+            >
+              <ArrowRight class="h-5 w-5" aria-hidden="true" />
+            </button>
+            <p
+              data-carousel-counter
+              aria-live="polite"
+              class="font-mono text-sm tracking-[0.24em] text-zinc-600 uppercase dark:text-zinc-400"
+            >
+              01 / {pad(total)}
+            </p>
+          </div>
+
+          <div class="mt-3 flex flex-wrap gap-2 sm:gap-3">
+            {
+              featured.map((project, i) => (
+                <button
+                  type="button"
+                  data-carousel-chip
+                  aria-current={i === 0 ? "true" : "false"}
+                  aria-controls="featured-projects"
+                  class="rounded-full border border-zinc-200 bg-white px-3 py-2 text-xs text-zinc-700 transition-colors hover:border-zinc-400 hover:bg-zinc-100 hover:text-zinc-950 aria-[current=true]:border-emerald-600 aria-[current=true]:bg-emerald-500/10 aria-[current=true]:text-emerald-800 sm:px-4 sm:text-sm dark:border-zinc-800 dark:bg-zinc-900/60 dark:text-zinc-400 dark:hover:border-zinc-600 dark:hover:text-zinc-200 dark:aria-[current=true]:border-emerald-500 dark:aria-[current=true]:text-emerald-400"
+                >
+                  {project.title}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="featured-projects"
+        data-carousel
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Featured projects"
+        tabindex="0"
+        class="flex flex-col gap-6 overflow-hidden rounded-[2rem] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-500"
+        data-reveal
+      >
+        {featured.map((project, i) => <ProjectSlide project={project} index={i} total={total} />)}
+      </div>
+    </div>
+
+    <div class="mt-16 sm:mt-20" data-self-hosted>
+      <h3 class="eyebrow mb-6">Self-hosted</h3>
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        {
+          selfHosted.map((project) => (
+            <li>
+              <ProjectCard project={project} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  import "../scripts/carousel";
+</script>

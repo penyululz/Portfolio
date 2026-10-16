@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import { ArrowUpRight, Music } from "@lucide/astro";
+import AiAssistedPill from "./AiAssistedPill.astro";
+import type { Project } from "../data/types";
+
+interface Props {
+  project: Project;
+  index: number;
+  total: number;
+}
+
+const { project, index, total } = Astro.props;
+const { media } = project;
+---
+
+<article
+  data-slide
+  data-active={index === 0 ? "" : undefined}
+  role="group"
+  aria-roledescription="slide"
+  aria-label={`${index + 1} of ${total}`}
+  class="group relative flex min-h-[26rem] touch-pan-y flex-col justify-between gap-6 overflow-hidden rounded-[1.75rem] border border-zinc-200 bg-white p-5 shadow-[0_18px_44px_rgba(24,24,27,0.08)] select-none sm:min-h-[30rem] sm:rounded-[2rem] sm:p-7 md:min-h-[34rem] md:p-10 xl:min-h-[36rem] dark:border-zinc-800 dark:bg-zinc-900/80 dark:shadow-none"
+>
+  {
+    media.kind === "image" ? (
+      <Image
+        src={media.src}
+        alt={media.alt}
+        widths={[768, 1280, 1600]}
+        sizes="(min-width: 1280px) 56rem, 100vw"
+        draggable="false"
+        class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none"
+      />
+    ) : (
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 flex items-start justify-center bg-gradient-to-br from-emerald-500/25 via-zinc-900 to-black pt-16 sm:items-center sm:pt-0"
+      >
+        <Music class="h-32 w-32 text-emerald-400 md:h-44 md:w-44" />
+      </div>
+    )
+  }
+
+  <div class="relative z-10 flex items-start justify-between gap-4">
+    <div class="flex flex-wrap gap-2">
+      <span
+        class="rounded-full border border-zinc-200/85 bg-white/85 px-3 py-1.5 font-mono text-[10px] tracking-[0.22em] text-zinc-700 uppercase shadow-sm backdrop-blur-md dark:border-zinc-700/80 dark:bg-zinc-950/75 dark:text-zinc-300"
+      >
+        {project.type}
+      </span>
+      {project.aiAssisted && <AiAssistedPill />}
+    </div>
+    {
+      project.href && (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title}`}
+          class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-black shadow-[0_12px_24px_-12px_rgba(16,185,129,0.9)] transition-transform hover:scale-110 sm:h-12 sm:w-12"
+        >
+          <ArrowUpRight class="h-5 w-5" aria-hidden="true" />
+        </a>
+      )
+    }
+  </div>
+
+  <div
+    class="relative z-10 rounded-[1.4rem] border border-white/70 bg-white/88 p-4 shadow-[0_22px_40px_-24px_rgba(24,24,27,0.45)] backdrop-blur-md sm:p-5 md:p-6 dark:border-white/10 dark:bg-black/65 dark:shadow-[0_22px_40px_-24px_rgba(0,0,0,0.7)]"
+  >
+    <h3 class="mb-3 text-2xl font-bold tracking-tight text-zinc-950 sm:mb-4 sm:text-3xl md:text-4xl dark:text-white">
+      {project.title}
+    </h3>
+    <p class="mb-5 max-w-3xl text-sm leading-relaxed text-zinc-800 sm:mb-6 sm:text-base md:text-lg dark:text-zinc-300">
+      {project.summary}
+    </p>
+    <ul class="flex flex-wrap gap-2 sm:gap-3" aria-label="Technologies">
+      {
+        project.tags.map((tag) => (
+          <li class="rounded-full border border-zinc-200 bg-zinc-100/95 px-3 py-1.5 text-xs font-medium text-zinc-900 sm:px-4 sm:py-2 sm:text-sm dark:border-white/10 dark:bg-white/10 dark:text-white">
+            {tag}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>

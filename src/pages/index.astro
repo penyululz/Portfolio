@@ -6,6 +6,7 @@ import Footer from "../components/Footer.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <BaseLayout>
@@ -17,9 +18,7 @@ import About from "../components/About.astro";
     <section id="teaching" class="section">
       <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="TEACHING" accent="& TRAINING" size="xl" stacked /></div>
     </section>
-    <section id="projects" class="section">
-      <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="SELECTED" accent="PROJECTS" stacked /></div>
-    </section>
+    <Projects />
     <section id="skills" class="section">
       <div class="mx-auto max-w-7xl px-6"><SectionHeading lead="CORE" accent="SKILLS" /></div>
     </section>
