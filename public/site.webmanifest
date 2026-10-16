@@ -1,0 +1,13 @@
+{
+  "name": "Mohamad Faris Danial | Lecturer & Technical Builder",
+  "short_name": "Faris Danial",
+  "description": "Lecturer and technical builder in Malaysia. Teaching backed by hands-on IT support, server and network operations, Docker deployment and full-stack web development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

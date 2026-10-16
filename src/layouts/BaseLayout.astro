@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import { SITE } from "../site.config";
+import { profile } from "../data/profile";
+import { marqueeRows } from "../data/skills";
 
 interface Props {
   title?: string;
@@ -8,6 +10,22 @@ interface Props {
 }
 
 const { title = SITE.title, description = SITE.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const ogImage = `${SITE.url}/og-image.png`;
+const ogImageAlt = "Portfolio preview for Mohamad Faris Danial";
+
+const personJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: profile.fullName,
+  alternateName: profile.shortName,
+  jobTitle: "Lecturer & Technical Builder",
+  worksFor: { "@type": "CollegeOrUniversity", name: "Tech Terrain College" },
+  email: `mailto:${profile.email}`,
+  url: SITE.url,
+  sameAs: [profile.links.linkedin, profile.links.github, profile.links.website],
+  knowsAbout: [...new Set(marqueeRows.flat())],
+});
 ---
 
 <!doctype html>
@@ -44,6 +62,33 @@ const { title = SITE.title, description = SITE.description } = Astro.props;
     </script>
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={profile.fullName} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_MY" />
+    <meta property="og:site_name" content="Mohamad Faris Danial Portfolio" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <script type="application/ld+json" set:html={personJsonLd} />
     <slot name="head" />
   </head>
   <body
