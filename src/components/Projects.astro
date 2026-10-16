@@ -3,11 +3,14 @@ import { ArrowLeft, ArrowRight } from "@lucide/astro";
 import SectionHeading from "./SectionHeading.astro";
 import ProjectSlide from "./ProjectSlide.astro";
 import ProjectCard from "./ProjectCard.astro";
+import { getCollection } from "astro:content";
 import { projects, projectsIntro } from "../data/projects";
+import { caseStudyHref } from "../lib/case-studies";
 
 const featured = projects.filter((p) => p.group === "featured");
 const selfHosted = projects.filter((p) => p.group === "self-hosted");
 const total = featured.length;
+const caseStudyIds = new Set((await getCollection("case-studies")).map((e) => e.id));
 const pad = (n: number) => String(n).padStart(2, "0");
 ---
 
@@ -74,7 +77,14 @@ const pad = (n: number) => String(n).padStart(2, "0");
         class="flex flex-col gap-6 overflow-hidden rounded-[2rem] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-500"
         data-reveal
       >
-        {featured.map((project, i) => <ProjectSlide project={project} index={i} total={total} />)}
+        {featured.map((project, i) => (
+          <ProjectSlide
+            project={project}
+            index={i}
+            total={total}
+            caseStudyHref={caseStudyIds.has(project.id) ? caseStudyHref(project.id) : undefined}
+          />
+        ))}
       </div>
     </div>
 

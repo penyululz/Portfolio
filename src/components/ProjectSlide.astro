@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { ArrowUpRight, Music } from "@lucide/astro";
+import { ArrowRight, ArrowUpRight, Music } from "@lucide/astro";
 import AiAssistedPill from "./AiAssistedPill.astro";
 import type { Project } from "../data/types";
 
@@ -8,9 +8,10 @@ interface Props {
   project: Project;
   index: number;
   total: number;
+  caseStudyHref?: string;
 }
 
-const { project, index, total } = Astro.props;
+const { project, index, total, caseStudyHref } = Astro.props;
 const { media } = project;
 ---
 
@@ -84,5 +85,17 @@ const { media } = project;
         ))
       }
     </ul>
+    {
+      caseStudyHref && (
+        <a
+          href={caseStudyHref}
+          aria-label={`Read the ${project.title} case study`}
+          class="mt-5 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-black shadow-[0_14px_32px_-18px_rgba(16,185,129,0.85)] transition-transform hover:scale-[1.02] sm:mt-6"
+        >
+          Read case study
+          <ArrowRight class="h-4 w-4" aria-hidden="true" />
+        </a>
+      )
+    }
   </div>
 </article>
