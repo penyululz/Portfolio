@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --app-font-scale: 1;
+}
+
+@layer base {
+  html {
+    font-size: calc(16px * var(--app-font-scale));
+    scroll-behavior: smooth;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer utilities {
+  .display-title {
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7),
+      0 14px 28px rgba(24, 24, 27, 0.08);
+  }
+
+  .dark .display-title {
+    text-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06),
+      0 14px 28px rgba(0, 0, 0, 0.34);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: var(--text-xs);
+    line-height: var(--text-xs--line-height);
+    color: var(--color-emerald-700);
+    @variant sm {
+      font-size: var(--text-sm);
+      line-height: var(--text-sm--line-height);
+    }
+    @variant dark {
+      color: var(--color-emerald-400);
+    }
+  }
+
+  .section {
+    position: relative;
+    padding-block: 5rem;
+    scroll-margin-top: 6rem;
+    @variant sm {
+      padding-block: 6rem;
+    }
+    @variant lg {
+      padding-block: 8rem;
+    }
+  }
+}
+
+[data-reveal] {
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal]:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    transition: none;
+  }
+}

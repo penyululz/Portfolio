@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+import { SITE } from "../site.config";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.title, description = SITE.description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-MY">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={SITE.themeColor.dark} />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      (() => {
+        const d = document.documentElement;
+        d.classList.add("js");
+        let t = null;
+        try { t = localStorage.getItem("theme"); } catch {}
+        if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        d.classList.toggle("dark", t === "dark");
+        d.dataset.theme = t;
+        d.style.colorScheme = t;
+        document.querySelector('meta[name="theme-color"]')?.setAttribute("content", t === "dark" ? "#050505" : "#ffffff");
+      })();
+    </script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <slot name="head" />
+  </head>
+  <body
+    class="bg-white text-zinc-950 antialiased selection:bg-emerald-500/20 overflow-x-clip dark:bg-[#050505] dark:text-zinc-50"
+  >
+    <slot />
+  </body>
+</html>

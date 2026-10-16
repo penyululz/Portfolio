@@ -1,0 +1,43 @@
+{
+  "name": "faris-danial-portfolio-2026",
+  "version": "1.0.0",
+  "description": "Portfolio of Mohamad Faris Danial, lecturer and technical builder.",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check:dist": "node scripts/check-dist.mjs dist",
+    "assets:import": "node scripts/import-assets.mjs",
+    "og": "node scripts/build-og.mjs",
+    "verify": "astro check && vitest run && astro build && node scripts/check-dist.mjs dist && playwright test"
+  },
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "@lucide/astro": "^1.57.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.0",
+    "bootstrap-icons": "^1.13.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "ffmpeg-static": "^5.3.0",
+    "sharp": "^0.35.5",
+    "vitest": "^5.0.5"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  }
+}
